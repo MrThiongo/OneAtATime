@@ -140,39 +140,83 @@
 <div class="md:col-span-4 sticky top-32 h-fit">
 <h2 class="serif-headline text-4xl mb-6 text-primary">The Art of <br/>Transit</h2>
 <p class="font-body text-on-surface-variant leading-relaxed mb-8">
-                        The city is a nervous system. To move is to participate in its electrical impulses. We decode the complex layers of urban mobility, from the iron veins of the subway to the ephemeral glide of a private car.
+                        The city is a complex system. Movement is not just about getting from one place to another, you find others navigating their own journeys
+						finding their own paths
                     </p>
 <div class="h-px w-24 bg-primary-container/40"></div>
 </div>
 <!-- Bento Grid Content -->
 <div class="md:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-8">
 <!-- Public Transport Card -->
-<div class="bg-surface-container-highest p-12 flex flex-col justify-between min-h-[450px] relative group overflow-hidden">
-<div class="absolute top-0 right-0 p-8 text-primary/20 group-hover:text-primary transition-colors duration-500">
-<span class="material-symbols-outlined text-6xl" data-icon="subway">subway</span>
+<div class="p-12 flex flex-col justify-between min-h-[450px] relative group overflow-hidden bg-cover bg-center cursor-pointer" 
+     style="background-image: url('https://i.imgur.com/AiNUyCL.png');"
+     onclick="document.getElementById('map-modal').classList.remove('hidden')">
+    
+    <div class="absolute inset-0 bg-surface-container-highest/80 group-hover:bg-surface-container-highest/60 transition-colors duration-500 z-0"></div>
+
+    <div class="absolute top-0 right-0 p-8 text-primary/20 group-hover:text-primary transition-colors duration-500 z-10">
+        <span class="material-symbols-outlined text-6xl" data-icon="subway">subway</span>
+    </div>
+
+    <div class="relative z-10">
+        <span class="font-label text-[0.6875rem] tracking-widest uppercase text-outline mb-4 block">01 / Arterial</span>
+        <h3 class="serif-headline text-3xl mb-4">The Street Scape </h3>
+    </div>
+
+    <div class="relative z-10">
+        <p class="font-body text-sm text-on-surface-variant leading-loose mb-6">
+            Through high-rise buildings, busy streets, busy people. See how Wandi moved through your city
+        </p>
+        <button class="inline-block border-b border-primary-container w-fit pb-1 text-[0.6875rem] font-bold uppercase tracking-widest text-primary hover:text-white transition-colors">
+           View Maps
+        </button>
+    </div>
 </div>
-<div>
-<span class="font-label text-[0.6875rem] tracking-widest uppercase text-outline mb-4 block">01 / Arterial</span>
-<h3 class="serif-headline text-3xl mb-4">Mass Transit</h3>
+
+<div id="map-modal" class="fixed inset-0 z-[100] hidden bg-black/90 flex items-center justify-center p-4 md:p-10 backdrop-blur-sm">
+    <button onclick="document.getElementById('map-modal').classList.add('hidden')" 
+            class="absolute top-10 right-10 text-white hover:text-primary transition-colors">
+        <span class="material-symbols-outlined text-4xl">close</span>
+    </button>
+    
+    <div class="max-w-5xl w-full h-full flex items-center justify-center">
+        <img src="https://i.imgur.com/AiNUyCL.png" alt="Transit Map" class="max-w-full max-h-full object-contain shadow-2xl">
+    </div>
 </div>
-<p class="font-body text-sm text-on-surface-variant leading-loose mb-6">
-                            Mastering the rapid transit systems requires an understanding of peak-hour currents and the subterranean architecture that binds the borough's souls.
-                        </p>
-<a class="inline-block border-b border-primary-container w-fit pb-1 text-[0.6875rem] font-bold uppercase tracking-widest text-primary hover:text-white transition-colors" href="#">View Maps</a>
+<div class="p-12 flex flex-col justify-between min-h-[450px] relative group overflow-hidden bg-cover bg-center cursor-pointer" 
+     style="background-image: url('https://i.imgur.com/91xh684.jpeg');"
+     onclick="document.getElementById('taxi-modal').classList.remove('hidden')">
+    
+    <div class="absolute inset-0 bg-surface-container-lowest/85 group-hover:bg-surface-container-lowest/70 transition-colors duration-500 z-0"></div>
+
+    <div class="absolute top-0 right-0 p-8 text-primary-container/20 group-hover:text-primary-container transition-colors duration-500 z-10">
+        <span class="material-symbols-outlined text-6xl" data-icon="local_taxi">local_taxi</span>
+    </div>
+
+    <div class="relative z-10">
+        <span class="font-label text-[0.6875rem] tracking-widest uppercase text-outline mb-4 block">02 / Private</span>
+        <h3 class="serif-headline text-3xl mb-4">Urban Cabs</h3>
+    </div>
+
+    <div class="relative z-10">
+        <p class="font-body text-sm text-on-surface-variant leading-loose mb-6">
+            For those who seek the window seat. A dialogue between the passenger and the pilot, navigating through the gridlock with surgical precision.
+        </p>
+        <button class="inline-block border-b border-primary-container w-fit pb-1 text-[0.6875rem] font-bold uppercase tracking-widest text-primary hover:text-white transition-colors">
+           Request Guide
+        </button>
+    </div>
 </div>
-<!-- Taxi/Ride Card -->
-<div class="bg-surface-container-lowest border border-outline-variant/10 p-12 flex flex-col justify-between min-h-[450px] relative">
-<div class="absolute top-0 right-0 p-8 text-primary-container/20">
-<span class="material-symbols-outlined text-6xl" data-icon="local_taxi">local_taxi</span>
-</div>
-<div>
-<span class="font-label text-[0.6875rem] tracking-widest uppercase text-outline mb-4 block">02 / Private</span>
-<h3 class="serif-headline text-3xl mb-4">Urban Cabs</h3>
-</div>
-<p class="font-body text-sm text-on-surface-variant leading-loose mb-6">
-                            For those who seek the window seat. A dialogue between the passenger and the pilot, navigating through the gridlock with surgical precision.
-                        </p>
-<a class="inline-block border-b border-primary-container w-fit pb-1 text-[0.6875rem] font-bold uppercase tracking-widest text-primary hover:text-white transition-colors" href="#">Request Guide</a>
+
+<div id="taxi-modal" class="fixed inset-0 z-[100] hidden bg-black/90 flex items-center justify-center p-4 md:p-10 backdrop-blur-sm">
+    <button onclick="event.stopPropagation(); document.getElementById('taxi-modal').classList.add('hidden')" 
+            class="absolute top-10 right-10 text-white hover:text-primary transition-colors">
+        <span class="material-symbols-outlined text-4xl">close</span>
+    </button>
+    
+    <div class="max-w-5xl w-full h-full flex items-center justify-center">
+        <img src="https://i.imgur.com/91xh684.jpeg" alt="Urban Cab Guide" class="max-w-full max-h-full object-contain shadow-2xl">
+    </div>
 </div>
 <!-- Walking Card - Full Width Span -->
 <div class="md:col-span-2 relative h-[500px] group overflow-hidden">
