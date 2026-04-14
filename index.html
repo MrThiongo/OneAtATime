@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PathFinder | The Digital Gallery</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Manrope:wght@300;400;600;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-surface-variant": "#d1c5b6",
+                    "primary": "#e9c176",
+                    "inverse-on-surface": "#313030",
+                    "on-secondary-fixed-variant": "#474746",
+                    "on-background": "#e5e2e1",
+                    "surface-container": "#201f1f",
+                    "on-primary": "#412d00",
+                    "surface-bright": "#3a3939",
+                    "secondary-container": "#474746",
+                    "secondary-fixed": "#e4e2e1",
+                    "surface-container-low": "#1c1b1b",
+                    "surface-container-lowest": "#0e0e0e",
+                    "on-primary-fixed-variant": "#5d4201",
+                    "inverse-primary": "#775a19",
+                    "background": "#131313",
+                    "on-secondary-fixed": "#1b1c1c",
+                    "on-tertiary-fixed": "#0d1d2a",
+                    "surface-container-high": "#2a2a2a",
+                    "on-secondary-container": "#b6b5b4",
+                    "surface-variant": "#353534",
+                    "tertiary-container": "#8594a5",
+                    "error": "#ffb4ab",
+                    "surface-container-highest": "#353534",
+                    "primary-fixed": "#ffdea5",
+                    "outline-variant": "#4e453a",
+                    "on-secondary": "#303030",
+                    "surface-tint": "#e9c176",
+                    "tertiary": "#b8c8da",
+                    "primary-fixed-dim": "#e9c176",
+                    "outline": "#9a8f81",
+                    "on-surface": "#e5e2e1",
+                    "on-primary-container": "#3b2800",
+                    "surface-dim": "#131313",
+                    "on-error-container": "#ffdad6",
+                    "on-error": "#690005",
+                    "primary-container": "#b18d48",
+                    "secondary": "#c8c6c5",
+                    "on-tertiary-container": "#1e2d3a",
+                    "inverse-surface": "#e5e2e1",
+                    "error-container": "#93000a",
+                    "tertiary-fixed": "#d4e4f6",
+                    "surface": "#131313",
+                    "on-tertiary-fixed-variant": "#394857",
+                    "on-tertiary": "#23323f",
+                    "on-primary-fixed": "#261900",
+                    "tertiary-fixed-dim": "#b8c8da",
+                    "secondary-fixed-dim": "#c8c6c5"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Noto Serif"],
+                    "body": ["Manrope"],
+                    "label": ["Manrope"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #131313;
+            color: #E5E2E1;
+            font-family: 'Manrope', sans-serif;
+            overflow-x: hidden;
+        }
+        .font-serif { font-family: 'Noto Serif', serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .cinematic-overlay {
+            background: linear-gradient(to bottom, rgba(19, 19, 19, 0.4) 0%, rgba(19, 19, 19, 0.1) 50%, rgba(19, 19, 19, 0.9) 100%);
+        }
+        .text-glow {
+            text-shadow: 0 0 30px rgba(233, 193, 118, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-[#131313]/60 backdrop-blur-xl transition-all duration-400 ease-out">
+<div class="flex justify-between items-center w-full px-8 py-6">
+<div class="text-2xl font-serif tracking-tight text-[#E5E2E1]">PathFinder</div>
+<nav class="hidden md:flex space-x-12 items-center">
+<a class="text-[#E9C176] font-semibold hover:text-[#E9C176] transition-all duration-400 ease-out text-sm tracking-widest uppercase" href="index.html">Home</a>
+<a class="text-[#D1C5B6] hover:text-[#E9C176] transition-all duration-400 ease-out text-sm tracking-widest uppercase" href="findyourway.html">Find Your Way</a>
+<a class="text-[#D1C5B6] hover:text-[#E9C176] transition-all duration-400 ease-out text-sm tracking-widest uppercase" href="findyourplace.html">Find Your Place</a>
+<a class="text-[#D1C5B6] hover:text-[#E9C176] transition-all duration-400 ease-out text-sm tracking-widest uppercase" href="#">Archive</a>
+</nav>
+<button class="p-2 text-[#E9C176] hover:scale-110 transition-all duration-400">
+<span class="material-symbols-outlined text-3xl">menu</span>
+</button>
+</div>
+</header>
+<!-- SideNavBar (Hidden by default, triggered by menu) -->
+<div class="hidden fixed inset-y-0 right-0 w-80 z-[60] bg-[#2A2A2A]/90 backdrop-blur-3xl flex-col h-full p-12 space-y-8">
+<div class="mb-12">
+<h2 class="text-3xl font-serif text-[#E9C176]">PathFinder</h2>
+<p class="text-sm font-body text-on-surface-variant">The Digital Gallery</p>
+</div>
+<nav class="flex flex-col space-y-6">
+<a class="text-[#E9C176] border-b border-[#E9C176]/20 py-2 flex items-center group" href="index.html">
+<span class="material-symbols-outlined mr-4">home</span>
+<span class="font-body text-lg">Home</span>
+</a>
+<a class="text-[#D1C5B6] hover:bg-[#353534] hover:text-[#E9C176] transition-colors py-2 flex items-center group px-2 rounded" href="findyourway.html">
+<span class="material-symbols-outlined mr-4">explore</span>
+<span class="font-body text-lg">Find Your Way</span>
+</a>
+<a class="text-[#D1C5B6] hover:bg-[#353534] hover:text-[#E9C176] transition-colors py-2 flex items-center group px-2 rounded" href="findyourplace.html">
+<span class="material-symbols-outlined mr-4">location_on</span>
+<span class="font-body text-lg">Find Your Place</span>
+</a>
+<a class="text-[#D1C5B6] hover:bg-[#353534] hover:text-[#E9C176] transition-colors py-2 flex items-center group px-2 rounded" href="#">
+<span class="material-symbols-outlined mr-4">grid_view</span>
+<span class="font-body text-lg">Archive</span>
+</a>
+</nav>
+</div>
+<main class="relative">
+<!-- Hero Section -->
+<section class="relative h-screen w-full flex items-center justify-center overflow-hidden">
+<!-- Background "Video" Placeholder using high-end image -->
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover scale-105" alt="Person walking through urban environment" src="https://i.imgur.com/JMH8KUs.jpeg"/>
+<div class="absolute inset-0 cinematic-overlay"></div>
+</div>
+<div class="relative z-10 text-center px-4 max-w-5xl">
+<h1 class="font-serif text-6xl md:text-9xl font-bold tracking-tighter text-[#E5E2E1] mb-6 text-glow">
+                    PathFinder
+                </h1>
+<p class="font-body text-lg md:text-xl text-[#D1C5B6] tracking-[0.5em] uppercase font-dark">
+                    Curate Your Journey
+                </p>
+<div class="mt-24 flex flex-col items-center">
+<div class="w-[1px] h-24 bg-gradient-to-b from-primary to-transparent"></div>
+<span class="mt-4 text-[10px] tracking-[0.5em] text-primary uppercase font-bold">Scroll to Explore</span>
+</div>
+</div>
+</section>
+<!-- Section 1: Find your way -->
+
+
+<section class="group relative h-screen w-full flex flex-col items-start justify-end p-12 md:p-24 overflow-hidden cursor-pointer transition-all duration-700">
+<!-- <div class="absolute inset-0 z-0 bg-surface-container-lowest"> -->
+<div class="absolute inset-0 z-0 bg-surface-container-lowest">
+
+  <video 
+    autoplay 
+    muted 
+    loop 
+    playsinline 
+    class="w-full h-full object-cover opacity-60 group-hover:scale-110 group-hover:opacity-80 transition-all duration-[1500ms] ease-out"
+  >
+    <source src="https://i.imgur.com/yIyTNtZ.mp4" type="video/mp4">
+  </video>
+
+  <div class="absolute inset-0 bg-gradient-to-r from-background via-transparent to-transparent opacity-80"></div>
+  <div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
+
+</div>
+
+</div>
+<div class="relative z-10 max-w-3xl">
+<div class="flex items-center space-x-4 mb-8">
+<span class="w-12 h-[1px] bg-primary"></span>
+<span class="font-label text-primary tracking-[0.4em] uppercase text-xs font-bold">Perspective 01</span>
+</div>
+
+<h2 class="font-serif text-5xl md:text-8xl text-on-surface mb-6 leading-tight">
+                    Find your way
+                </h2>
+<p class="font-body text-on-surface-variant text-lg md:text-xl max-w-md leading-relaxed mb-10">
+                    There's cars, the infamous taxis, public transport, and good old walking and cycling. Find all the ways to navigate joburg here.
+                </p>
+				
+<a href="findyourway.html" class="inline-flex items-center space-x-6 text-primary group/btn no-underline">
+        <span class="text-sm tracking-[0.3em] uppercase font-bold border-b border-primary/30 pb-1 group-hover/btn:border-primary transition-all duration-400">
+            View Collection
+        </span>
+        <span class="material-symbols-outlined translate-x-0 group-hover/btn:translate-x-4 transition-transform duration-400">
+            arrow_forward
+        </span>
+    </a>
+</div>
+</section>
+<!-- Section 2: Find your place -->
+<section class="group relative h-screen w-full flex flex-col items-end justify-end p-12 md:p-24 overflow-hidden cursor-pointer transition-all duration-700">
+<div class="absolute inset-0 z-0 bg-surface-container-lowest">
+  <video 
+    autoplay 
+    muted 
+    loop 
+    playsinline 
+    class="w-full h-full object-cover opacity-60 group-hover:scale-110 group-hover:opacity-80 transition-all duration-[1500ms] ease-out"
+  >
+    <source src="https://i.imgur.com/lYJu9OS.mp4" type="video/mp4">
+  </video>
+
+  <div class="absolute inset-0 bg-gradient-to-r from-background via-transparent to-transparent opacity-80"></div>
+  <div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
+  
+</div>
+<div class="relative z-10 max-w-3xl text-right flex flex-col items-end">
+<div class="flex items-center space-x-4 mb-8">
+<span class="font-label text-primary tracking-[0.4em] uppercase text-xs font-bold">Perspective 02</span>
+<span class="w-12 h-[1px] bg-primary"></span>
+</div>
+<h2 class="font-serif text-5xl md:text-8xl text-on-surface mb-6 leading-tight">
+                    Find your place
+                </h2>
+<p class="font-body text-on-surface-variant text-lg md:text-xl max-w-md leading-relaxed mb-10">
+                    Discover your place of sanctuary, or chaos, within the city of Gold.
+                </p>
+	
+<a href="findyourplace.html" class="inline-flex items-center space-x-6 text-primary group/btn no-underline">
+        <span class="text-sm tracking-[0.3em] uppercase font-bold border-b border-primary/30 pb-1 group-hover/btn:border-primary transition-all duration-400">
+            View Collection
+        </span>
+        <span class="material-symbols-outlined translate-x-0 group-hover/btn:translate-x-4 transition-transform duration-400">
+            arrow_forward
+        </span>
+    </a>
+</div>	
+</section>
+</main>
+
+</body></html>
