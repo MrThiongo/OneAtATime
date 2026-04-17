@@ -1,11 +1,8 @@
-<!--Claude FindYourPlace-->
-
 <html class="dark" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&amp;family=Manrope:wght@300;400;600;800&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script id="tailwind-config">
     tailwind.config = {
@@ -119,27 +116,59 @@
     }
     .fullscreen-close-btn {
       position: absolute;
-      top: 20px;
-      right: 20px;
+      top: 40px;
+      right: 40px;
       background-color: #E9C176;
       color: #131313;
       border: none;
       padding: 10px 15px;
       cursor: pointer;
-      font-size: 18px;
+      font-size: 24px;
       border-radius: 4px;
+      font-weight: bold;
+      transition: transform 0.2s ease;
+      z-index: 10001;
+    }
+    .fullscreen-close-btn:hover {
+      transform: scale(1.1);
+    }
+    @keyframes scroll-arrow {
+        0%, 100% { transform: translateY(0); opacity: 1; }
+        50% { transform: translateY(8px); opacity: 0.5; }
+    }
+    .scroll-arrow {
+        animation: scroll-arrow 2s ease-in-out infinite;
+    }
+    .magnifying-glass {
+      position: fixed;
+      width: 250px;
+      height: 250px;
+      border: 4px solid #E9C176;
+      border-radius: 50%;
+      pointer-events: none;
+      overflow: hidden;
+      display: none;
+      box-shadow: 0 0 30px rgba(233, 193, 118, 0.6), inset 0 0 20px rgba(233, 193, 118, 0.2);
+      z-index: 10000;
+    }
+    .magnifying-glass.active {
+      display: block;
+    }
+    .magnifying-glass img {
+      position: absolute;
+      pointer-events: none;
+      max-width: none !important; /* Allow zoomed width */
     }
   </style>
 </head>
 <body class="selection:bg-primary-container selection:text-on-primary-container">
-<!-- TopNavBar Implementation -->
 <nav class="fixed top-0 w-full z-50 flex justify-between items-center px-10 py-6 bg-[#131313]/80 backdrop-blur-2xl shadow-[0_24px_48px_rgba(0,0,0,0.5),0_8px_16px_rgba(233,193,118,0.05)]">
-<div class="text-3xl font-serif text-[#E9C176] uppercase tracking-tighter"><a href="index.html">PathFinder</a></div>
+<div class="font-headline text-3xl font-bold uppercase text-[#E9C176]"><a href="index.html">PathFinder</a></div>
 <div class="hidden md:flex items-center gap-10">
-<a class="font-['Noto_Serif'] text-lg tracking-tight text-[#E5E2E1]/60 hover:text-[#E5E2E1] transition-colors duration-300" href="index.html">Home</a>
-<a class="font-['Noto_Serif'] text-lg tracking-tight text-[#E5E2E1]/60 hover:text-[#E5E2E1] transition-colors duration-300" href="findyourway.html">The Art of Transit</a>
-<a class="font-['Noto_Serif'] text-lg tracking-tight text-[#FFDEA5] border-b-2 border-[#E9C176] pb-1" href="findyourplace.html">Curated Places</a>
-<a class="font-['Noto_Serif'] text-lg tracking-tight text-[#E5E2E1]/60 hover:text-[#E5E2E1] transition-colors duration-300" href="#">Archive</a>
+<a class="font-headline text-lg tracking-tight text-[#E5E2E1]/60 hover:text-[#E5E2E1] transition-colors duration-300" href="index.html">Home</a>
+<a class="font-headline text-lg tracking-tight text-[#E5E2E1]/60 hover:text-[#E5E2E1] transition-colors duration-300" href="findyourway.html">The Art of Transit</a>
+<a class="font-headline text-lg tracking-tight text-[#FFDEA5] border-b-2 border-[#E9C176] pb-1" href="findyourplace.html">Curated Places</a>
+<a class="font-headline text-lg tracking-tight text-[#E5E2E1]/60 hover:text-[#E5E2E1] transition-colors duration-300" href="#">Archive</a>
 </div>
 <div class="flex items-center">
 <button class="text-[#FFDEA5] scale-95 active:duration-100">
@@ -148,51 +177,31 @@
 </div>
 </nav>
 <main>
-<!--Place Video -->
-<!-- Section 2: Find your place -->
 <section class="group relative h-screen w-full flex flex-col items-end justify-end p-12 md:p-24 overflow-hidden cursor-pointer transition-all duration-700">
 <div class="absolute inset-0 z-0 bg-surface-container-lowest">
-  <video 
-    autoplay 
-    muted 
-    loop 
-    playsinline 
-    class="w-full h-full object-cover opacity-60 group-hover:scale-110 group-hover:opacity-80 transition-all duration-[1500ms] ease-out"
-  >
+  <video autoplay muted loop playsinline class="w-full h-full object-cover opacity-60 group-hover:scale-110 group-hover:opacity-80 transition-all duration-[1500ms] ease-out">
     <source src="https://i.imgur.com/lYJu9OS.mp4" type="video/mp4">
   </video>
-
   <div class="absolute inset-0 bg-gradient-to-r from-background via-transparent to-transparent opacity-80"></div>
   <div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
-  
 </div>
 <div class="relative z-10 max-w-3xl text-right flex flex-col items-end">
 <div class="flex items-center space-x-4 mb-8">
 <span class="font-label text-primary tracking-[0.4em] uppercase text-xs font-bold">Perspective 02</span>
 <span class="w-12 h-[1px] bg-primary"></span>
 </div>
-<h2 class="font-serif text-5xl md:text-8xl text-on-surface mb-6 leading-tight">
-                   Worlds Within Worlds
-                </h2>
+<h2 class="font-headline text-5xl md:text-8xl text-on-surface mb-6 leading-tight">Worlds Within Worlds</h2>
 <p class="font-body text-on-surface-variant text-lg md:text-xl max-w-md leading-relaxed mb-10">
-                    You might think you've seen it all, until you see Joburg. Explore the people that make the places.
-					
-                </p>
-	
-<a href="findyourplace.html" class="inline-flex items-center space-x-6 text-primary group/btn no-underline">
-        <span class="text-sm tracking-[0.3em] uppercase font-bold border-b border-primary/30 pb-1 group-hover/btn:border-primary transition-all duration-400">
-            View Collection
-        </span>
-        <span class="material-symbols-outlined translate-x-0 group-hover/btn:translate-x-4 transition-transform duration-400">
-            arrow_forward
-        </span>
-    </a>
+    You might think you've seen it all, until you see Joburg. Explore the people that make the places.
+</p>
+<button onclick="document.getElementById('places-hero').scrollIntoView({ behavior: 'smooth' })" class="inline-flex items-center space-x-6 text-primary group/btn no-underline cursor-pointer">
+    <span class="text-sm tracking-[0.3em] uppercase font-bold border-b border-primary/30 pb-1 group-hover/btn:border-primary transition-all duration-400">View Collection</span>
+    <span class="material-symbols-outlined translate-x-0 group-hover/btn:translate-x-4 transition-transform duration-400 scroll-arrow">arrow_downward</span>
+</button>
 </div>	
 </section>
-</main>
 
-<!-- Hero Section -->
-<section class="relative h-screen w-full flex items-center justify-start overflow-hidden">
+<section id="places-hero" class="relative h-screen w-full flex items-center justify-start overflow-hidden">
 <div class="absolute inset-0 z-0">
 <img alt="Cinematic urban street photography" class="w-full h-full object-cover" src="https://i.imgur.com/HcOyGRc.jpeg"/>
 <div class="absolute inset-0 bg-gradient-to-r from-[#131313] via-[#131313]/60 to-transparent"></div>
@@ -201,26 +210,24 @@
 <span class="font-label text-[0.6875rem] tracking-[0.3em] uppercase text-primary-fixed mb-4 block">Chapter II: The Environment</span>
 <h1 class="font-headline text-4xl md:text-8xl leading-tight text-white text-shadow-hero mb-8">Find Your <span class="text-primary-container italic">Place</span>.</h1>
 <p class="font-body text-lg md:text-xl text-on-surface-variant max-w-lg mb-10 leading-relaxed">
-          
-		  Between busy street markets, quiet libraries, places of work, and historic buildings, find what makes Joburg, Joburg.
-        </p>
-<button class="bg-gradient-to-br from-[#FFDEA5] to-[#E9C176] text-on-primary px-12 py-4 font-label uppercase tracking-widest text-sm font-extrabold hover:brightness-110 transition-all" onclick="document.getElementById('concrete-home').scrollIntoView({ behavior: 'smooth' })">
-         View Spaces
-        </button>
+    Between busy street markets, quiet libraries, places of work, and historic buildings, find what makes Joburg, Joburg.
+</p>
+<button class="bg-gradient-to-br from-[#FFDEA5] to-[#E9C176] text-on-primary px-12 py-4 font-label uppercase tracking-widest text-sm font-extrabold hover:brightness-110 transition-all cursor-pointer" onclick="document.getElementById('concrete-home').scrollIntoView({ behavior: 'smooth' })">
+    View Spaces
+</button>
 </div>
-<!-- Vertical Path Indicator -->
 <div class="absolute right-10 bottom-10 h-32 w-px bg-primary-container hidden lg:block">
 <div class="absolute top-0 -left-1 text-[0.6875rem] text-primary-container rotate-90 origin-left tracking-widest uppercase translate-x-4">Scroll</div>
 </div>
 </section>
-<!-- Asymmetric Gallery Section -->
+
 <section id="concrete-home" class="py-32 px-10 bg-background">
 <div class="flex flex-col md:flex-row gap-20">
 <div class="md:w-1/3 flex flex-col justify-center">
 <h2 class="font-headline text-4xl mb-6 text-primary">A Concrete Home</h2>
 <p class="font-body text-on-surface-variant leading-relaxed mb-8">
-           Joburg is not meant for any one kind of person. It houses the wealthy businessmen, the modest workers, the curious artists, and the misunderstood transients.  Explore the complex web of lifestyles that come together in this Urban Centre.
-          </p>
+    Joburg is not meant for any one kind of person. It houses the wealthy businessmen, the modest workers, the curious artists, and the misunderstood transients.  Explore the complex web of lifestyles that come together in this Urban Centre.
+</p>
 <div class="w-12 h-px bg-outline-variant mb-4"></div>
 <p class="font-label text-[0.6875rem] uppercase tracking-widest text-secondary-fixed-dim">01 / The Real CBD</p>
 </div>
@@ -233,9 +240,8 @@
 </div>
 </div>
 <div class="relative aspect-[4/5] mt-12 md:mt-24 bg-surface-container-highest overflow-hidden cursor-pointer" onclick="openFullscreen(this.querySelector('img'))">
-
-<img alt="Rooftop garden at dusk" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" src="https://i.imgur.com/HcOyGRc.jpeg"/>
-<div class="absolute bottom-6 left-6 p-4 bg-background/80 backdrop-blur-md">
+<img alt="Rooftop garden at dusk" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" id="city-actors-img" src="https://i.imgur.com/dCHNVJI.jpeg"/>
+<div class="absolute bottom-6 left-6 p-4 bg-background/80 backdrop-blur-md z-10">
 <span class="font-label text-[0.6rem] tracking-widest uppercase block mb-1"> 26°12'19.54"S 28°02'48.60"E</span>
 <span class="font-headline text-lg">City Actors</span>
 </div>
@@ -244,136 +250,130 @@
 </div>
 </section>
 
-<!-- Chaos & Contrast Section (Bento Grid) 
-<section class="py-32 px-10 bg-surface-container-lowest">
-<div class="mb-16">
-<h2 class="font-headline text-5xl md:text-7xl text-on-surface text-center mb-4">The Rhythm of Chaos</h2>
-<div class="w-24 h-1 bg-primary-container mx-auto"></div>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-4 grid-rows-2 gap-4 max-w-7xl mx-auto">
-<!-- Main Feature 
-<div class="md:col-span-2 md:row-span-2 bg-surface-container-high relative overflow-hidden group cursor-pointer" onclick="playAudio('kinetic-pulse-audio')">
-<img alt="Time lapse of city traffic" class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-1000" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDsNcHM1mpqu4If36wsMvpy6MLF5SbGui7k2H3vI4feJAHb17-y6zcvnZSAy4Q_EL2VErfABLUDM87-KPb6fGxp2bKepxS1pLq1c-JJatte2xN6oGRPiKoDwHfx0J4ErSdlI60mTuYITJHpQAUtubhg0QP4RUfimvrbm1C8xN_6YWpipD-9i6za6is4x4BCsHE0Bv5g1xlx8ujJz43vR-zkpPhjeOaiYcuncfJG_qrakc95zvxxJKSHdcfs0R-BPoQFkj3wP3ZRhc"/>
-<div class="absolute inset-0 flex flex-col justify-end p-10 bg-gradient-to-t from-background to-transparent">
-<h3 class="font-headline text-3xl mb-2">Kinetic Pulse</h3>
-<p class="font-body text-sm text-on-surface-variant max-w-xs">Exploring the high-frequency intersections where the city never sleeps.</p>
-</div>
-</div>
-<!-- Side Item 1 
-<div class="md:col-span-2 bg-surface-container-high flex items-center p-8 border border-outline-variant/10 cursor-pointer" onclick="playAudio('subway-vein-audio')">
-<div class="w-1/2">
-<h4 class="font-headline text-xl mb-2 text-primary-fixed">The Subway Vein</h4>
-<p class="font-body text-[0.8rem] text-on-surface-variant">The underground narrative of transit and temporary connection.</p>
-</div>
-<div class="w-1/2 h-full bg-surface">
-<img alt="Blurred subway train" class="w-full h-full object-cover grayscale opacity-80" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbegz6GB_NYW0ZvOz__FyeBZ-wfx2o7oLzmng3gHY2Ujskrkzb0_Kg0Ju4jPSkONpvCtFss4jsqltPIAMf1J8UwGseN9P6NgIn_CY30942tsAEQu_7h9Jp0EMPu3DqFIYTHR3B0shK-kK7tU8RT7FRYMVc2VKD_lgLugPwNSvYeYL8K2U-G3w9X9cqeyEklrkqyOOBL1f3Bc3SX1Oj2PYVRXsq5tLlKIxUb2lIe0vwGQqo0Ew_uiYUsK3fbSgHks1X-3tHFeIUrTk"/>
-</div>
-</div>
-<!-- Side Item 2 
-<div class="md:col-span-1 bg-[#1c1b1b] p-8 flex flex-col justify-between cursor-pointer" onclick="playAudio('audio-profile-audio')">
-<span class="material-symbols-outlined text-primary-container text-4xl">sensors</span>
-<div>
-<h4 class="font-label text-xs tracking-widest uppercase mb-1">Audio Profile</h4>
-<p class="font-headline text-lg">98dB Chaos</p>
-</div>
-</div>
-<!-- Side Item 3 --> <!--
-<div class="md:col-span-1 bg-[#353534] relative group cursor-pointer" onclick="playAudio('neon-audio')">
-<img alt="Neon sign in rain" class="w-full h-full object-cover opacity-40" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2jnb9QaM20KpGo9VNQqxgFmklNYzNLQl-WiWG1d9PXd1bXxdeRSKj4j5alX1YV0-daWqK3mTuMiDOpuB6Cyhz44jUoVMs1dg_7l9wGKn8ILy2OGJU88BEb3hChOw5CBXhip7ytefK4y5MPlWGiI0vW3Q-jMkED9VKEQ3D_nUffjRv31L2esvSK6FM-dA73ogwyXzcye7Ho97fi7jUqa7N82Nygxi8RU0Ce1Ts7AA50ElMLGP8bsSm8XF_whLRqbwCTgyp9XQc"/>
-<div class="absolute inset-0 flex items-center justify-center">
-<button class="bg-primary-container text-on-primary p-4 rounded-full flex items-center justify-center">
-<span class="material-symbols-outlined">play_arrow</span>
-</button>
-</div>
-</div>
-</div>
-</div>
-</section>
--->
-<!-- Quote/Immersive Interstitial -->
 <section class="py-40 bg-background flex flex-col items-center text-center px-10">
 <div class="max-w-3xl">
 <span class="material-symbols-outlined text-primary-fixed-dim text-5xl mb-8">format_quote</span>
 <blockquote class="font-headline text-3xl md:text-5xl italic leading-tight text-white mb-10">
-          "The city is not just a place, it can be your place too. Find Your Place in Joburg"
-        </blockquote>
+    "The city is not just a place, it can be your place too. Find Your Place in Joburg"
+</blockquote>
 <div class="font-label text-[0.6875rem] tracking-[0.2em] uppercase text-primary-container">
-          — Baraka and Safia, The PathFinder Collective
-        </div>
+    — Baraka and Safia, The PathFinder Collective
+</div>
 </div>
 </section>
+ <section class="py-40 text-center relative overflow-hidden">
+            <div class="absolute inset-0 opacity-10 pointer-events-none select-none">
+                <span class="serif-headline text-[20rem] absolute -top-40 -left-20 text-primary-container font-bold">WAY</span>
+                <span class="serif-headline text-[20rem] absolute -bottom-40 -right-20 text-primary-container font-bold">PATH</span>
+            </div>
+            <div class="relative z-10 max-w-3xl mx-auto px-6">
+                <h2 class="serif-headline text-5xl md:text-7xl mb-12">Lose yourself to <span class="italic text-primary">find</span> the way.</h2>
+                <div class="flex flex-col sm:flex-row justify-center gap-6">
+                    <a href="findyourway.html" class="inline-block bg-primary text-on-primary px-12 py-5 font-bold uppercase tracking-[0.2em] text-xs transition-all hover:bg-white hover:text-black">
+                        See The Art of Transit
+                    </a>
+                    <a href="index.html" class="inline-block border border-outline-variant/30 text-on-surface px-12 py-5 font-bold uppercase tracking-[0.2em] text-xs hover:bg-surface-container-highest transition-colors">
+                        Back to Home 
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
 </main>
 
-<!-- Fullscreen Image Overlay -->
 <div id="fullscreen-overlay" class="fullscreen-overlay">
-  <button class="fullscreen-close-btn" onclick="closeFullscreen()">✕ Close</button>
+  <button class="fullscreen-close-btn" onclick="closeFullscreen()">✕</button>
   <img id="fullscreen-image" src="" alt="Fullscreen view"/>
 </div>
 
-<!-- Audio Elements -->
-<audio id="kinetic-pulse-audio" preload="auto">
-  <source src="" type="audio/mpeg">
-  Your browser does not support the audio element.
-</audio>
-
-<audio id="subway-vein-audio" preload="auto">
-  <source src="" type="audio/mpeg">
-  Your browser does not support the audio element.
-</audio>
-
-<audio id="audio-profile-audio" preload="auto">
-  <source src="" type="audio/mpeg">
-  Your browser does not support the audio element.
-</audio>
-
-<audio id="neon-audio" preload="auto">
-  <source src="" type="audio/mpeg">
-  Your browser does not support the audio element.
-</audio>
+<div class="magnifying-glass" id="magnifying-glass">
+  <img alt="Magnified view" id="mag-glass-img" src="">
+</div>
 
 <script>
   // Fullscreen Image Functions
   function openFullscreen(imgElement) {
     const overlay = document.getElementById('fullscreen-overlay');
     const fullscreenImg = document.getElementById('fullscreen-image');
+    const magImg = document.getElementById('mag-glass-img');
+    
     fullscreenImg.src = imgElement.src;
+    magImg.src = imgElement.src; // Synchronize magnifier image
+    
     overlay.classList.add('active');
+    hideMagnifyingGlass();
+    
+    // Enable magnifier ONLY for City Actors image
+    if (imgElement.id === 'city-actors-img') {
+      fullscreenImg.addEventListener('mousemove', updateMagnifyingGlassFullscreen);
+      fullscreenImg.addEventListener('mouseleave', hideMagnifyingGlass);
+    }
   }
 
   function closeFullscreen() {
     const overlay = document.getElementById('fullscreen-overlay');
     overlay.classList.remove('active');
+    hideMagnifyingGlass();
+    
+    const fullscreenImg = document.getElementById('fullscreen-image');
+    fullscreenImg.removeEventListener('mousemove', updateMagnifyingGlassFullscreen);
+    fullscreenImg.removeEventListener('mouseleave', hideMagnifyingGlass);
   }
 
-  // Close fullscreen when clicking outside the image
+  // Close when clicking outside image
   document.getElementById('fullscreen-overlay').addEventListener('click', function(e) {
-    if (e.target === this) {
-      closeFullscreen();
-    }
+    if (e.target === this) closeFullscreen();
   });
 
-  // Audio Playback Function
-  function playAudio(audioId) {
-    const audio = document.getElementById(audioId);
-    if (audio.paused) {
-      audio.play();
-    } else {
-      audio.pause();
-      audio.currentTime = 0;
-    }
+  // Magnifying Glass Logic
+  function updateMagnifyingGlassFullscreen(event) {
+    const magnifier = document.getElementById('magnifying-glass');
+    const fullscreenImg = document.getElementById('fullscreen-image');
+    const magImg = document.getElementById('mag-glass-img');
+    
+    magnifier.classList.add('active');
+    
+    const rect = fullscreenImg.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+    
+    // Center magnifier on cursor
+    magnifier.style.left = (event.clientX - 125) + 'px';
+    magnifier.style.top = (event.clientY - 125) + 'px';
+    
+    const zoomLevel = 3;
+    
+    // Position internal image to center zoomed area
+    const magX = (x * zoomLevel) - 125;
+    const magY = (y * zoomLevel) - 125;
+    
+    magImg.style.width = (rect.width * zoomLevel) + 'px';
+    magImg.style.height = (rect.height * zoomLevel) + 'px';
+    magImg.style.left = -magX + 'px';
+    magImg.style.top = -magY + 'px';
   }
+
+  function hideMagnifyingGlass() {
+    document.getElementById('magnifying-glass').classList.remove('active');
+  }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      closeFullscreen();
+      hideMagnifyingGlass();
+    }
+  });
 </script>
 
-<!-- Footer Implementation -->
 <footer class="w-full py-12 px-10 flex flex-col md:flex-row justify-between items-center border-t border-[#4E4639]/20 bg-[#0E0E0E]">
-<div class="text-[#E9C176] font-serif text-xl mb-6 md:mb-0">PathFinder</div>
-<div class="font-['Manrope'] text-[0.6875rem] tracking-[0.1em] uppercase text-[#E5E2E1]/50 text-center md:text-left mb-6 md:mb-0">
-      © PathFinder Editorial. By Baraka Thiongo and Safia Sithole
-    </div>
+<div class="text-[#E9C176] font-headline text-xl mb-6 md:mb-0 uppercase">PathFinder</div>
+<div class="font-body text-[0.6875rem] tracking-[0.1em] uppercase text-[#E5E2E1]/50 text-center md:text-left mb-6 md:mb-0">
+    © PathFinder Editorial. By Baraka Thiongo and Safia Sithole
+</div>
 <div class="flex gap-10">
-<a class="font-['Manrope'] text-[0.6875rem] tracking-[0.1em] uppercase text-[#E5E2E1]/50 hover:text-[#E9C176] opacity-80 hover:opacity-100 transition-all" href="#">Privacy</a>
-<a class="font-['Manrope'] text-[0.6875rem] tracking-[0.1em] uppercase text-[#E5E2E1]/50 hover:text-[#E9C176] opacity-80 hover:opacity-100 transition-all" href="#">Terms</a>
-<a class="font-['Manrope'] text-[0.6875rem] tracking-[0.1em] uppercase text-[#E5E2E1]/50 hover:text-[#E9C176] opacity-80 hover:opacity-100 transition-all" href="#">Contact</a>
+<a class="font-body text-[0.6875rem] tracking-[0.1em] uppercase text-[#E5E2E1]/50 hover:text-[#E9C176] opacity-80 hover:opacity-100 transition-all" href="#">Privacy</a>
+<a class="font-body text-[0.6875rem] tracking-[0.1em] uppercase text-[#E5E2E1]/50 hover:text-[#E9C176] opacity-80 hover:opacity-100 transition-all" href="#">Terms</a>
+<a class="font-body text-[0.6875rem] tracking-[0.1em] uppercase text-[#E5E2E1]/50 hover:text-[#E9C176] opacity-80 hover:opacity-100 transition-all" href="#">Contact</a>
 </div>
 </footer>
 </body></html>
