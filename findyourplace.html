@@ -157,7 +157,7 @@
     .magnifying-glass img {
       position: absolute;
       pointer-events: none;
-      max-width: none !important; /* Allow zoomed width */
+      max-width: none !important;
     }
   </style>
 </head>
@@ -166,8 +166,8 @@
 <div class="font-headline text-3xl font-bold uppercase text-[#E9C176]"><a href="index.html">PathFinder</a></div>
 <div class="hidden md:flex items-center gap-10">
 <a class="font-headline text-lg tracking-tight text-[#E5E2E1]/60 hover:text-[#E5E2E1] transition-colors duration-300" href="index.html">Home</a>
-<a class="font-headline text-lg tracking-tight text-[#E5E2E1]/60 hover:text-[#E5E2E1] transition-colors duration-300" href="findyourway.html">More Than Transit</a>
-<a class="font-headline text-lg tracking-tight text-[#FFDEA5] border-b-2 border-[#E9C176] pb-1" href="findyourplace.html">Created Spaces</a>
+<a class="font-headline text-lg tracking-tight text-[#E5E2E1]/60 hover:text-[#E5E2E1] transition-colors duration-300" href="findyourway.html">The Art of Transit</a>
+<a class="font-headline text-lg tracking-tight text-[#FFDEA5] border-b-2 border-[#E9C176] pb-1" href="findyourplace.html">Curated Places</a>
 <a class="font-headline text-lg tracking-tight text-[#E5E2E1]/60 hover:text-[#E5E2E1] transition-colors duration-300" href="#">Archive</a>
 </div>
 <div class="flex items-center">
@@ -240,7 +240,7 @@
 </div>
 </div>
 <div class="relative aspect-[4/5] mt-12 md:mt-24 bg-surface-container-highest overflow-hidden cursor-pointer" onclick="openFullscreen(this.querySelector('img'))">
-<img alt="Rooftop garden at dusk" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" id="city-actors-img" src="https://i.imgur.com/dCHNVJI.jpeg"/>
+<img alt="Rooftop garden at dusk" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" id="city-actors-img" src="https://i.imgur.com/HcOyGRc.jpeg"/>
 <div class="absolute bottom-6 left-6 p-4 bg-background/80 backdrop-blur-md z-10">
 <span class="font-label text-[0.6rem] tracking-widest uppercase block mb-1"> 26°12'19.54"S 28°02'48.60"E</span>
 <span class="font-headline text-lg">City Actors</span>
@@ -261,24 +261,6 @@
 </div>
 </div>
 </section>
- <section class="py-40 text-center relative overflow-hidden">
-            <div class="absolute inset-0 opacity-10 pointer-events-none select-none">
-                <span class="serif-headline text-[20rem] absolute -top-40 -left-20 text-primary-container font-bold">WAY</span>
-                <span class="serif-headline text-[20rem] absolute -bottom-40 -right-20 text-primary-container font-bold">PATH</span>
-            </div>
-            <div class="relative z-10 max-w-3xl mx-auto px-6">
-                <h2 class="serif-headline text-5xl md:text-7xl mb-12">Lose yourself to <span class="italic text-primary">find</span> the way.</h2>
-                <div class="flex flex-col sm:flex-row justify-center gap-6">
-                    <a href="findyourway.html" class="inline-block bg-primary text-on-primary px-12 py-5 font-bold uppercase tracking-[0.2em] text-xs transition-all hover:bg-white hover:text-black">
-                        See The Art of Transit
-                    </a>
-                    <a href="index.html" class="inline-block border border-outline-variant/30 text-on-surface px-12 py-5 font-bold uppercase tracking-[0.2em] text-xs hover:bg-surface-container-highest transition-colors">
-                        Back to Home 
-                    </a>
-                </div>
-            </div>
-        </section>
-    </main>
 </main>
 
 <div id="fullscreen-overlay" class="fullscreen-overlay">
@@ -291,19 +273,17 @@
 </div>
 
 <script>
-  // Fullscreen Image Functions
   function openFullscreen(imgElement) {
     const overlay = document.getElementById('fullscreen-overlay');
     const fullscreenImg = document.getElementById('fullscreen-image');
     const magImg = document.getElementById('mag-glass-img');
     
     fullscreenImg.src = imgElement.src;
-    magImg.src = imgElement.src; // Synchronize magnifier image
+    magImg.src = imgElement.src;
     
     overlay.classList.add('active');
     hideMagnifyingGlass();
     
-    // Enable magnifier ONLY for City Actors image
     if (imgElement.id === 'city-actors-img') {
       fullscreenImg.addEventListener('mousemove', updateMagnifyingGlassFullscreen);
       fullscreenImg.addEventListener('mouseleave', hideMagnifyingGlass);
@@ -320,12 +300,10 @@
     fullscreenImg.removeEventListener('mouseleave', hideMagnifyingGlass);
   }
 
-  // Close when clicking outside image
   document.getElementById('fullscreen-overlay').addEventListener('click', function(e) {
     if (e.target === this) closeFullscreen();
   });
 
-  // Magnifying Glass Logic
   function updateMagnifyingGlassFullscreen(event) {
     const magnifier = document.getElementById('magnifying-glass');
     const fullscreenImg = document.getElementById('fullscreen-image');
@@ -337,15 +315,15 @@
     const x = event.clientX - rect.left;
     const y = event.clientY - rect.top;
     
-    // Center magnifier on cursor
-    magnifier.style.left = (event.clientX - 125) + 'px';
-    magnifier.style.top = (event.clientY - 125) + 'px';
+    const radius = 125; // half of magnifier width
+    magnifier.style.left = (event.clientX - radius) + 'px';
+    magnifier.style.top = (event.clientY - radius) + 'px';
     
-    const zoomLevel = 3;
+    // REDUCED INTENSITY: changed zoomLevel from 3 to 1.5
+    const zoomLevel = 1.5;
     
-    // Position internal image to center zoomed area
-    const magX = (x * zoomLevel) - 125;
-    const magY = (y * zoomLevel) - 125;
+    const magX = (x * zoomLevel) - radius;
+    const magY = (y * zoomLevel) - radius;
     
     magImg.style.width = (rect.width * zoomLevel) + 'px';
     magImg.style.height = (rect.height * zoomLevel) + 'px';
