@@ -1,82 +1,81 @@
 <!DOCTYPE html>
-
-<html class="dark" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&amp;family=Manrope:wght@300;400;600;800&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            "colors": {
-                    "inverse-on-surface": "#313030",
-                    "on-error": "#690005",
-                    "on-tertiary-fixed-variant": "#314672",
-                    "on-secondary-fixed-variant": "#4d463a",
-                    "on-surface-variant": "#d1c5b4",
-                    "surface-container-lowest": "#0e0e0e",
-                    "on-primary-fixed": "#261900",
-                    "surface-container-highest": "#353534",
-                    "surface-dim": "#131313",
-                    "inverse-surface": "#e5e2e1",
-                    "primary-fixed": "#ffdea5",
-                    "tertiary-fixed-dim": "#b1c6fa",
-                    "on-primary-container": "#6a4e0c",
-                    "surface": "#131313",
-                    "on-primary": "#412d00",
-                    "secondary": "#d1c5b6",
-                    "error": "#ffb4ab",
-                    "tertiary": "#d8e2ff",
-                    "surface-bright": "#393939",
-                    "surface-container-low": "#1c1b1b",
-                    "primary-fixed-dim": "#e9c176",
-                    "inverse-primary": "#775a19",
-                    "surface-container-high": "#2a2a2a",
-                    "outline-variant": "#4e4639",
-                    "on-tertiary": "#192f5a",
-                    "on-secondary-fixed": "#211b11",
-                    "tertiary-fixed": "#d9e2ff",
-                    "secondary-container": "#4d463a",
-                    "primary-container": "#e9c176",
-                    "surface-container": "#201f1f",
-                    "secondary-fixed-dim": "#d1c5b6",
-                    "on-secondary": "#362f25",
-                    "on-background": "#e5e2e1",
-                    "error-container": "#93000a",
-                    "background": "#131313",
-                    "primary": "#ffdea5",
-                    "on-error-container": "#ffdad6",
-                    "on-secondary-container": "#bfb3a5",
-                    "surface-tint": "#e9c176",
-                    "outline": "#9a8f80",
-                    "on-primary-fixed-variant": "#5d4200",
-                    "on-tertiary-container": "#3d527f",
-                    "on-surface": "#e5e2e1",
-                    "surface-variant": "#353534",
-                    "secondary-fixed": "#ede1d1",
-                    "tertiary-container": "#b1c6fa",
-                    "on-tertiary-fixed": "#001a43"
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&amp;family=Manrope:wght@300;400;600;800&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+          tailwind.config = {
+            darkMode: "class",
+            theme: {
+              extend: {
+                "colors": {
+                        "inverse-on-surface": "#313030",
+                        "on-error": "#690005",
+                        "on-tertiary-fixed-variant": "#314672",
+                        "on-secondary-fixed-variant": "#4d463a",
+                        "on-surface-variant": "#d1c5b4",
+                        "surface-container-lowest": "#0e0e0e",
+                        "on-primary-fixed": "#261900",
+                        "surface-container-highest": "#353534",
+                        "surface-dim": "#131313",
+                        "inverse-surface": "#e5e2e1",
+                        "primary-fixed": "#ffdea5",
+                        "tertiary-fixed-dim": "#b1c6fa",
+                        "on-primary-container": "#6a4e0c",
+                        "surface": "#131313",
+                        "on-primary": "#412d00",
+                        "secondary": "#d1c5b6",
+                        "error": "#ffb4ab",
+                        "tertiary": "#d8e2ff",
+                        "surface-bright": "#393939",
+                        "surface-container-low": "#1c1b1b",
+                        "primary-fixed-dim": "#e9c176",
+                        "inverse-primary": "#775a19",
+                        "surface-container-high": "#2a2a2a",
+                        "outline-variant": "#4e4639",
+                        "on-tertiary": "#192f5a",
+                        "on-secondary-fixed": "#211b11",
+                        "tertiary-fixed": "#d9e2ff",
+                        "secondary-container": "#4d463a",
+                        "primary-container": "#e9c176",
+                        "surface-container": "#201f1f",
+                        "secondary-fixed-dim": "#d1c5b6",
+                        "on-secondary": "#362f25",
+                        "on-background": "#e5e2e1",
+                        "error-container": "#93000a",
+                        "background": "#131313",
+                        "primary": "#ffdea5",
+                        "on-error-container": "#ffdad6",
+                        "on-secondary-container": "#bfb3a5",
+                        "surface-tint": "#e9c176",
+                        "outline": "#9a8f80",
+                        "on-primary-fixed-variant": "#5d4200",
+                        "on-tertiary-container": "#3d527f",
+                        "on-surface": "#e5e2e1",
+                        "surface-variant": "#353534",
+                        "secondary-fixed": "#ede1d1",
+                        "tertiary-container": "#b1c6fa",
+                        "on-tertiary-fixed": "#001a43"
+                },
+                "borderRadius": {
+                        "DEFAULT": "0px",
+                        "lg": "0px",
+                        "xl": "0px",
+                        "full": "9999px"
+                },
+                "fontFamily": {
+                        "headline": ["Noto Serif"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                }
+              },
             },
-            "borderRadius": {
-                    "DEFAULT": "0px",
-                    "lg": "0px",
-                    "xl": "0px",
-                    "full": "9999px"
-            },
-            "fontFamily": {
-                    "headline": ["Noto Serif"],
-                    "body": ["Manrope"],
-                    "label": ["Manrope"]
-            }
-          },
-        },
-      }
+          }
     </script>
-<style>
+    <style>
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
@@ -92,268 +91,343 @@
             background: rgba(19, 19, 19, 0.7);
             backdrop-filter: blur(24px);
         }
+        @keyframes scroll-arrow {
+            0%, 100% { transform: translateY(0); opacity: 1; }
+            50% { transform: translateY(8px); opacity: 0.5; }
+        }
+        .scroll-arrow {
+            animation: scroll-arrow 2s ease-in-out infinite;
+        }
+        @keyframes float-image {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+        .float-on-hover:hover {
+            animation: float-image 2s ease-in-out infinite;
+        }
+        @keyframes glow-pulse {
+            0%, 100% { filter: drop-shadow(0 0 8px rgba(233, 193, 118, 0)); }
+            50% { filter: drop-shadow(0 0 16px rgba(233, 193, 118, 0.6)); }
+        }
+        .glow-lines-on-hover:hover path {
+            stroke: #E9C176;
+            animation: glow-pulse 1.5s ease-in-out infinite;
+        }
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            z-index: 100;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-overlay.active {
+            display: flex;
+        }
+        .modal-overlay img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            cursor: zoom-in;
+        }
+        .close-modal-btn {
+            position: absolute;
+            top: 40px;
+            right: 40px;
+            background: none;
+            border: none;
+            color: #E9C176;
+            font-size: 40px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            z-index: 110;
+        }
+        .close-modal-btn:hover {
+            transform: scale(1.2);
+        }
+
+        /* Large Snapshot Popup Styles */
+        .mini-popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(12px);
+            z-index: 200;
+            align-items: center;
+            justify-content: center;
+        }
+        .mini-popup-overlay.active {
+            display: flex;
+        }
+        .mini-popup-content {
+            background: #1c1b1b;
+            padding: 1.5rem;
+            border: 1px solid #4e4639;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+            /* Making it near full-screen */
+            width: 95vw;
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            transform: scale(0.95);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .mini-popup-overlay.active .mini-popup-content {
+            transform: scale(1);
+        }
+        .snapshot-img-container {
+            flex-grow: 1;
+            width: 100%;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .snapshot-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
     </style>
 </head>
 <body class="selection:bg-primary-container selection:text-on-primary-container">
-<!-- TopNavBar -->
-<nav class="fixed top-0 w-full z-50 flex justify-between items-center px-10 py-6 bg-[#131313]/80 backdrop-blur-2xl shadow-[0_24px_48px_rgba(0,0,0,0.5),0_8px_16px_rgba(233,193,118,0.05)]">
-<div class="text-3xl font-serif text-[#E9C176] uppercase tracking-tighter"><a href="index.html">PathFinder</a></div>
-<div class="hidden md:flex items-center gap-10">
-<a class="font-['Noto_Serif'] text-lg tracking-tight text-[#E5E2E1]/60 hover:text-[#E5E2E1] transition-colors duration-300" href="index.html">Home</a>
-<a class="font-['Noto_Serif'] text-lg tracking-tight text-[#FFDEA5] border-b-2 border-[#E9C176] pb-1" href="findyourway.html">The Art of Transit</a>
-<a class="font-['Noto_Serif'] text-lg tracking-tight text-[#E5E2E1]/60 hover:text-[#E5E2E1] transition-colors duration-300" href="findyourplace.html">Created Spaces</a>
-<a class="font-['Noto_Serif'] text-lg tracking-tight text-[#E5E2E1]/60 hover:text-[#E5E2E1] transition-colors duration-300" href="#">Archive</a>
-</div>
-<div class="flex items-center gap-4 text-[#FFDEA5]">
-<span class="material-symbols-outlined text-2xl cursor-pointer scale-95 active:duration-100" data-icon="menu">menu</span>
-</div>
-</nav>
+    <nav class="fixed top-0 w-full z-50 flex justify-between items-center px-10 py-6 bg-[#131313]/80 backdrop-blur-2xl shadow-[0_24px_48px_rgba(0,0,0,0.5),0_8px_16px_rgba(233,193,118,0.05)]">
+        <div class="font-headline text-3xl font-bold uppercase text-[#E9C176]"><a href="index.html">PathFinder</a></div>
+        <div class="hidden md:flex items-center gap-10">
+            <a class="font-headline text-lg tracking-tight text-[#E5E2E1]/60 hover:text-[#E5E2E1] transition-colors duration-300" href="index.html">Home</a>
+            <a class="font-headline text-lg tracking-tight text-[#FFDEA5] border-b-2 border-[#E9C176] pb-1" href="findyourway.html">The Art of Transit</a>
+            <a class="font-headline text-lg tracking-tight text-[#E5E2E1]/60 hover:text-[#E5E2E1] transition-colors duration-300" href="findyourplace.html">Created Spaces</a>
+            <a class="font-headline text-lg tracking-tight text-[#E5E2E1]/60 hover:text-[#E5E2E1] transition-colors duration-300" href="#">Archive</a>
+        </div>
+        <div class="flex items-center gap-4 text-[#FFDEA5]">
+            <span class="material-symbols-outlined text-2xl cursor-pointer scale-95 active:duration-100" data-icon="menu">menu</span>
+        </div>
+    </nav>
 
-<!-- Section 1: Update: The Art of Transit -->
+    <section class="group relative h-screen w-full flex flex-col items-start justify-end p-12 md:p-24 overflow-hidden cursor-pointer transition-all duration-700">
+        <div class="absolute inset-0 z-0 bg-surface-container-lowest">
+            <video autoplay muted loop playsinline class="w-full h-full object-cover opacity-60 group-hover:scale-110 group-hover:opacity-80 transition-all duration-[1500ms] ease-out">
+                <source src="https://i.imgur.com/yIyTNtZ.mp4" type="video/mp4">
+            </video>
+            <div class="absolute inset-0 bg-gradient-to-r from-background via-transparent to-transparent opacity-80"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
+        </div>
+        <div class="relative z-10 max-w-3xl">
+            <div class="flex items-center space-x-4 mb-8">
+                <span class="w-12 h-[1px] bg-primary"></span>
+                <span class="font-label text-primary tracking-[0.4em] uppercase text-xs font-bold">Perspective 01</span>
+            </div>
+            <h2 class="font-serif text-5xl md:text-8xl text-on-surface mb-6 leading-tight">The Art of Transit</h2>
+            <p class="font-body text-on-surface-variant text-lg md:text-xl max-w-md leading-relaxed mb-10">
+                Everyone talks about the chaos of Jozi roads. Laws feel optional, rage is inevitable, and risk is inescapable.
+                Come see the other side, where the roads aren't a nuisance, but a place of connection and peace.
+            </p>
+            <button onclick="document.getElementById('urban-guide').scrollIntoView({ behavior: 'smooth' })" class="inline-flex items-center space-x-6 text-primary group/btn no-underline cursor-pointer">
+                <span class="text-sm tracking-[0.3em] uppercase font-bold border-b border-primary/30 pb-1 group-hover/btn:border-primary transition-all duration-400">See the journey</span>
+                <span class="material-symbols-outlined translate-x-0 group-hover/btn:translate-x-4 transition-transform duration-400 scroll-arrow">arrow_downward</span>
+            </button>
+        </div>
+    </section>
 
-<section class="group relative h-screen w-full flex flex-col items-start justify-end p-12 md:p-24 overflow-hidden cursor-pointer transition-all duration-700">
-<!-- <div class="absolute inset-0 z-0 bg-surface-container-lowest"> -->
-<div class="absolute inset-0 z-0 bg-surface-container-lowest">
-
-  <video 
-    autoplay 
-    muted 
-    loop 
-    playsinline 
-    class="w-full h-full object-cover opacity-60 group-hover:scale-110 group-hover:opacity-80 transition-all duration-[1500ms] ease-out"
-  >
-
-   <source src="https://i.imgur.com/yIyTNtZ.mp4" type="video/mp4">
-  </video>
-
-  <div class="absolute inset-0 bg-gradient-to-r from-background via-transparent to-transparent opacity-80"></div>
-  <div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
-
-</div>
-
-</div>
-<div class="relative z-10 max-w-3xl">
-<div class="flex items-center space-x-4 mb-8">
-<span class="w-12 h-[1px] bg-primary"></span>
-<span class="font-label text-primary tracking-[0.4em] uppercase text-xs font-bold">Perspective 01</span>
-</div>
-
-<h2 class="font-serif text-5xl md:text-8xl text-on-surface mb-6 leading-tight">
-                    The Art of Transit
-                </h2>
-<p class="font-body text-on-surface-variant text-lg md:text-xl max-w-md leading-relaxed mb-10">
-                 Everyone talks about the chaos of Jozi roads. Laws feel optional, rage is inevitable, and risk is inescapable.
-				Come see the other side, where the roads aren't a nuisance, but a place of connection and peace.
-				
-                </p>
-				
-<a href="findyourway.html" class="inline-flex items-center space-x-6 text-primary group/btn no-underline">
-        <span class="text-sm tracking-[0.3em] uppercase font-bold border-b border-primary/30 pb-1 group-hover/btn:border-primary transition-all duration-400">
-            See the journey
-        </span>
-        <span class="material-symbols-outlined translate-x-0 group-hover/btn:translate-x-4 transition-transform duration-400">
-            arrow_forward
-        </span>
-    </a>
-</div>
-</section>
-<!--Section 1 
-Urban Exoloration Section -->
-<header class="relative h-screen w-full flex items-center overflow-hidden">
-<div class="absolute inset-0 z-0">
-<img alt="Cinematic urban street at night" class="w-full h-full object-cover" data-alt=" Way Header " src="https://i.imgur.com/YY9tL6H.png"/> 
-</div>
-<div class="relative z-10 px-10 md:px-20 w-full max-w-7xl">
-<div class="border-l border-primary-container/30 pl-8 md:pl-12"
-<p class="font-label text-[0.6875rem] tracking-[0.2em] uppercase text-primary-container mb-4">Urban Guide</p>
-<h1 class="serif-headline text-6xl md:text-8xl lg:text-[7rem] leading-[0.9] text-on-surface mb-8 max-w-4xl tracking-tighter">
+    <header id="urban-guide" class="relative h-screen w-full flex items-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img alt="Cinematic urban street at night" class="w-full h-full object-cover float-on-hover" src="https://i.imgur.com/YY9tL6H.png"/> 
+        </div>
+        <div class="relative z-10 px-10 md:px-20 w-full max-w-7xl">
+            <div class="border-l border-primary-container/30 pl-8 md:pl-12">
+                <p class="font-label text-[0.6875rem] tracking-[0.2em] uppercase text-primary-container mb-4">Urban Guide</p>
+                <h1 class="serif-headline text-6xl md:text-8xl lg:text-[7rem] leading-[0.9] text-on-surface mb-8 max-w-4xl tracking-tighter">
                     Pause <br/> <span class="italic text-primary">between</span> movement
                 </h1>
-<div class="flex flex-col md:flex-row gap-8 items-start md:items-center">
-<button class="bg-gradient-to-br from-primary to-primary-container px-10 py-4 text-on-primary font-bold uppercase tracking-widest text-[0.6875rem] transition-transform hover:scale-105 active:scale-95">
+                <div class="flex flex-col md:flex-row gap-8 items-start md:items-center">
+                    <button onclick="document.querySelector('main').scrollIntoView({ behavior: 'smooth' })" class="bg-gradient-to-br from-primary to-primary-container px-10 py-4 text-on-primary font-bold uppercase tracking-widest text-[0.6875rem] transition-transform hover:scale-105 active:scale-95 cursor-pointer">
                         Look Closer
                     </button>
-<p class="max-w-xs text-on-surface-variant font-body text-sm leading-relaxed opacity-70">
-                       Look into the cars and the taxis, pay attention to the people walking through the street. Notice that these are not just commuters commuting, but people living.
+                    <p class="max-w-xs text-on-surface-variant font-body text-sm leading-relaxed opacity-70">
+                        Look into the cars and the taxis, pay attention to the people walking through the street. Notice that these are not just commuters commuting, but people living.
                     </p>
-</div>
-</div>
-</div>
-<!-- Vertical Path Indicator -->
-<div class="absolute right-12 bottom-12 h-32 w-px bg-gradient-to-t from-primary to-transparent opacity-50 hidden md:block"></div>
-</header>
-<main class="bg-background relative z-10">
-<!-- Navigation Modes Section -->
-<section class="py-32 px-10 md:px-20 max-w-screen-2xl mx-auto">
-<div class="grid grid-cols-1 md:grid-cols-12 gap-12">
-<!-- Intro Column -->
-<div class="md:col-span-4 sticky top-32 h-fit">
-<h2 class="serif-headline text-4xl mb-6 text-primary">The Art of <br/>Transit</h2>
-<p class="font-body text-on-surface-variant leading-relaxed mb-8">
-						Its not just about going from point A to B, take a sho't left and C all that goes on within
+                </div>
+            </div>
+        </div>
+        <div class="absolute right-12 bottom-12 h-32 w-px bg-gradient-to-t from-primary to-transparent opacity-50 hidden md:block"></div>
+    </header>
+
+    <main class="bg-background relative z-10">
+        <section class="py-32 px-10 md:px-20 max-w-screen-2xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
+                <div class="md:col-span-4 sticky top-32 h-fit">
+                    <h2 class="serif-headline text-4xl mb-6 text-primary">The Art of <br/>Transit</h2>
+                    <p class="font-body text-on-surface-variant leading-relaxed mb-8">
+                        Its not just about going from point A to B, take a sho't left and C all that goes on within
                         The city is a complex system. Movement is not just about getting from one place to another, you find others navigating their own journeys
-						finding their own paths
+                        finding their own paths
                     </p>
-<div class="h-px w-24 bg-primary-container/40"></div>
-</div>
-<!-- Bento Grid Content -->
-<div class="md:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-8">
-<!-- Public Transport Card -->
-<div class="p-12 flex flex-col justify-between min-h-[450px] relative group overflow-hidden bg-cover bg-center cursor-pointer" 
-     style="background-image: url('https://i.imgur.com/AiNUyCL.png');"
-     onclick="document.getElementById('map-modal').classList.remove('hidden')">
-    
-    <div class="absolute inset-0 bg-surface-container-highest/80 group-hover:bg-surface-container-highest/60 transition-colors duration-500 z-0"></div>
+                    <div class="h-px w-24 bg-primary-container/40"></div>
+                </div>
+                <div class="md:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-8">
+                    
+                    <div class="p-12 flex flex-col justify-between min-h-[450px] relative group overflow-hidden bg-cover bg-center cursor-pointer" 
+                         style="background-image: url('https://i.imgur.com/AiNUyCL.png');"
+                         onclick="openModal('map-modal')">
+                        <div class="absolute inset-0 bg-surface-container-highest/80 group-hover:bg-surface-container-highest/60 transition-colors duration-500 z-0"></div>
+                        <div class="absolute top-0 right-0 p-8 text-primary/20 group-hover:text-primary transition-colors duration-500 z-10">
+                            <span class="material-symbols-outlined text-6xl" data-icon="subway">subway</span>
+                        </div>
+                        <div class="relative z-10">
+                            <span class="font-label text-[0.6875rem] tracking-widest uppercase text-outline mb-4 block">01 / The sho't left</span>
+                            <h3 class="serif-headline text-3xl mb-4">Sho't left</h3>
+                        </div>
+                        <div class="relative z-10">
+                            <p class="font-body text-sm text-on-surface-variant leading-loose mb-6">
+                                Past high-rise buildings, busy streets, and busy people. Take a sho't left and have a closer look.
+                            </p>
+                            <button class="inline-block border-b border-primary-container w-fit pb-1 text-[0.6875rem] font-bold uppercase tracking-widest text-primary hover:text-white transition-colors">
+                                View Map
+                            </button>
+                        </div>
+                    </div>
 
-    <div class="absolute top-0 right-0 p-8 text-primary/20 group-hover:text-primary transition-colors duration-500 z-10">
-        <span class="material-symbols-outlined text-6xl" data-icon="subway">subway</span>
-    </div>
+                    <div id="map-modal" class="modal-overlay">
+                        <button class="close-modal-btn" onclick="closeModal('map-modal')">&times;</button>
+                        <div class="max-w-5xl w-full h-full flex items-center justify-center">
+                            <img src="https://i.imgur.com/AiNUyCL.png" alt="Transit Map" class="max-w-full max-h-full object-contain shadow-2xl" onclick="openSnapshotPopup()">
+                        </div>
+                    </div>
 
-    <div class="relative z-10">
-        <span class="font-label text-[0.6875rem] tracking-widest uppercase text-outline mb-4 block">01 / The sho't left</span>
-        <h3 class="serif-headline text-3xl mb-4"> Sho't left </h3>
-    </div>
+                    <div class="p-12 flex flex-col justify-between min-h-[450px] relative group overflow-hidden bg-cover bg-center cursor-pointer" 
+                         style="background-image: url('https://i.imgur.com/91xh684.jpeg');"
+                         onclick="openModal('taxi-modal')">
+                        <div class="absolute inset-0 bg-surface-container-lowest/85 group-hover:bg-surface-container-lowest/70 transition-colors duration-500 z-0"></div>
+                        <div class="absolute top-0 right-0 p-8 text-primary-container/20 group-hover:text-primary-container transition-colors duration-500 z-10">
+                            <span class="material-symbols-outlined text-6xl" data-icon="local_taxi">local_taxi</span>
+                        </div>
+                        <div class="relative z-10">
+                            <span class="font-label text-[0.6875rem] tracking-widest uppercase text-outline mb-4 block">02 / Public or Private?</span>
+                            <h3 class="serif-headline text-3xl mb-4">Bona iTaxi</h3>
+                        </div>
+                        <div class="relative z-10">
+                            <p class="font-body text-sm text-on-surface-variant leading-loose mb-6">
+                                Its more than just a minibus. For those who notice the driver's seat. A dialogue between the passenger and the pilot, after navigating the grid with surgical precision.
+                            </p>
+                            <button class="inline-block border-b border-primary-container w-fit pb-1 text-[0.6875rem] font-bold uppercase tracking-widest text-primary hover:text-white transition-colors">
+                                See It Yourself
+                            </button>
+                        </div>
+                    </div>
 
-    <div class="relative z-10">
-        <p class="font-body text-sm text-on-surface-variant leading-loose mb-6">
-            Pastn high-rise buildings, busy streets, and busy people. Take a sho't left and have a closer look.
-        </p>
-        <button class="inline-block border-b border-primary-container w-fit pb-1 text-[0.6875rem] font-bold uppercase tracking-widest text-primary hover:text-white transition-colors">
-           View Map
-        </button>
-    </div>
-</div>
+                    <div id="taxi-modal" class="modal-overlay">
+                        <button class="close-modal-btn" onclick="closeModal('taxi-modal')">&times;</button>
+                        <div class="max-w-5xl w-full h-full flex items-center justify-center">
+                            <img src="https://i.imgur.com/91xh684.jpeg" alt="Urban Cab Guide" class="max-w-full max-h-full object-contain shadow-2xl" onclick="openSnapshotPopup()">
+                        </div>
+                    </div>
 
-<div id="map-modal" class="fixed inset-0 z-[100] hidden bg-black/90 flex items-center justify-center p-4 md:p-10 backdrop-blur-sm">
-    <button onclick="document.getElementById('map-modal').classList.add('hidden')" 
-            class="absolute top-10 right-10 text-white hover:text-primary transition-colors">
-        <span class="material-symbols-outlined text-4xl">close</span>
-    </button>
-    
-    <div class="max-w-5xl w-full h-full flex items-center justify-center">
-        <img src="https://i.imgur.com/AiNUyCL.png" alt="Transit Map" class="max-w-full max-h-full object-contain shadow-2xl">
-    </div>
-</div>
-<div class="p-12 flex flex-col justify-between min-h-[450px] relative group overflow-hidden bg-cover bg-center cursor-pointer" 
-     style="background-image: url('https://i.imgur.com/91xh684.jpeg');"
-     onclick="document.getElementById('taxi-modal').classList.remove('hidden')">
-    
-    <div class="absolute inset-0 bg-surface-container-lowest/85 group-hover:bg-surface-container-lowest/70 transition-colors duration-500 z-0"></div>
-
-    <div class="absolute top-0 right-0 p-8 text-primary-container/20 group-hover:text-primary-container transition-colors duration-500 z-10">
-        <span class="material-symbols-outlined text-6xl" data-icon="local_taxi">local_taxi</span>
-    </div>
-
-    <div class="relative z-10">
-        <span class="font-label text-[0.6875rem] tracking-widest uppercase text-outline mb-4 block">02 / Public or Private?</span>
-        <h3 class="serif-headline text-3xl mb-4">Bona iTaxi</h3>
-    </div>
-
-    <div class="relative z-10">
-        <p class="font-body text-sm text-on-surface-variant leading-loose mb-6">
-		Its more than just a minibus. 
-            For those who notice the driver's seat. A dialogue between the passenger and the pilot, after navigating the grid with surgical precision.
-        </p>
-        <button class="inline-block border-b border-primary-container w-fit pb-1 text-[0.6875rem] font-bold uppercase tracking-widest text-primary hover:text-white transition-colors">
-           See It Yourself
-        </button>
-    </div>
-</div>
-
-<div id="taxi-modal" class="fixed inset-0 z-[100] hidden bg-black/90 flex items-center justify-center p-4 md:p-10 backdrop-blur-sm">
-    <button onclick="event.stopPropagation(); document.getElementById('taxi-modal').classList.add('hidden')" 
-            class="absolute top-10 right-10 text-white hover:text-primary transition-colors">
-        <span class="material-symbols-outlined text-4xl">close</span>
-    </button>
-    
-    <div class="max-w-5xl w-full h-full flex items-center justify-center">
-        <img src="https://i.imgur.com/91xh684.jpeg" alt="Urban Cab Guide" class="max-w-full max-h-full object-contain shadow-2xl">
-    </div>
-</div>
-<!-- Walking Card - Full Width Span -->
-<div class="md:col-span-2 relative h-[500px] group overflow-hidden">
-<img alt="Person walking through a modern architectural plaza" class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" data-alt="Safia walking parallel to taxis" src="https://i.imgur.com/ivCmeXZ.jpeg"/>
-<div class="absolute inset-0 bg-gradient-to-t from-background to-transparent opacity-90"></div>
-<div class="absolute bottom-0 left-0 p-12 max-w-xl">
-<span class="font-label text-[0.6875rem] tracking-widest uppercase text-primary mb-4 block">03 / First Principles</span>
-<h3 class="serif-headline text-4xl mb-4">The Pedestrian POV</h3>
-<p class="font-body text-on-surface-variant leading-relaxed">
+                    <div class="md:col-span-2 relative h-[500px] group overflow-hidden cursor-pointer" onclick="openModal('pedestrian-modal')">
+                        <img alt="Safia walking parallel to taxis" class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" src="https://i.imgur.com/wwRLxHe.jpeg"/>
+                        <div class="absolute inset-0 bg-gradient-to-t from-background to-transparent opacity-90"></div>
+                        <div class="absolute bottom-0 left-0 p-12 max-w-xl">
+                            <span class="font-label text-[0.6875rem] tracking-widest uppercase text-primary mb-4 block">03 / First Principles</span>
+                            <h3 class="serif-headline text-4xl mb-4">The Pedestrian POV</h3>
+                            <p class="font-body text-on-surface-variant leading-relaxed">
                                 Do it the original way. Walk through the streets and notice everything - the enduring entrepreneurs, the niche abandoned buildings, and the joyful interactions. Slow down and take a stroll.
                             </p>
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- Asymmetric Detail Section 
-<section class="py-32 bg-surface-container-lowest">
-<div class="max-w-screen-2xl mx-auto px-10 md:px-20 grid grid-cols-1 md:grid-cols-12 gap-16 items-center">
-<div class="md:col-span-7 relative">
-<div class="aspect-[16/9] w-full bg-surface-container-highest overflow-hidden">
-<img alt="Detail of a map or navigation screen" class="w-full h-full object-cover" data-alt="Macro photography of a digital navigation map with glowing golden routes and dark topography on a sleek glass interface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCt_t2ZmSXQ8bH2Sq7BfSVzWAnX1yDBgjWW4IGfpc6v1O_JrTxtNt9YxnKNs6h-bVqgUevb6VT05hk5noDqWDGFBAFFDsaPpRjjLf0TGfDlHsRMB3TPtE-SB7Rborx9WB3jJJUAsjtkcwIj15s3_eJQkb8iP-87qSl5EPEkFBA9zP2tD8r9a1ovb_nU0zrLBP6LC5TcLFV_OX3gAKhQpxL0kQ8Eb3aBPTuj_UZV3mB1xMVapkHGoXyPTERze0BftSpF37ePi-aKnss"/>
-</div>
-<!-- Overlapping Decorative Element 
+                        </div>
+                    </div>
 
-<div class="absolute -bottom-10 -right-10 bg-primary-container p-12 hidden lg:block">
-<span class="material-symbols-outlined text-on-primary text-5xl" data-icon="explore">explore</span>
-</div>
-</div>
-<div class="md:col-span-5 border-l border-primary/20 pl-12 py-10">
-<h2 class="serif-headline text-5xl mb-8">Precision <br/>in Every Step.</h2>
-<p class="font-body text-on-surface-variant leading-loose mb-10 opacity-80">
-                        PathFinder integrates real-time atmospheric data with traditional mapping. We don't just tell you where to go; we tell you how it feels to be there. Avoid the chaos, embrace the flow.
-                    </p>
-<div class="space-y-6">
-<div class="flex items-center gap-6">
-<span class="w-12 h-px bg-primary"></span>
-<span class="font-label text-xs tracking-widest uppercase">Live Crowd Densities</span>
-</div>
-<div class="flex items-center gap-6">
-<span class="w-12 h-px bg-primary"></span>
-<span class="font-label text-xs tracking-widest uppercase">Atmospheric Lighting Forecast</span>
-</div>
-<div class="flex items-center gap-6">
-<span class="w-12 h-px bg-primary"></span>
-<span class="font-label text-xs tracking-widest uppercase">Curated Discovery Nodes</span>
-</div>
-</div>
-</div>
-</div>
-</section> -->
-<!-- CTA Section -->
-<section class="py-40 text-center relative overflow-hidden">
-  <div class="absolute inset-0 opacity-10 pointer-events-none select-none">
-    <span class="serif-headline text-[20rem] absolute -top-40 -left-20 text-primary-container">WAY</span>
-    <span class="serif-headline text-[20rem] absolute -bottom-40 -right-20 text-primary-container">PATH</span>
-  </div>
-  <div class="relative z-10 max-w-3xl mx-auto px-6">
-    <h2 class="serif-headline text-5xl md:text-7xl mb-12">Lose yourself to <span class="italic text-primary">find</span> the way.</h2>
-    <div class="flex flex-col sm:flex-row justify-center gap-6">
-      
-      <a href="file:///D:/Users/baraka/Documents/Net%20Website/Pathfinder%20for%20Github%20-%20Copy/findyourplace.html" 
-         class="inline-block bg-primary text-on-primary px-12 py-5 font-bold uppercase tracking-[0.2em] text-xs transition-all hover:bg-white hover:text-black">
-        See Created Places
-      </a>
+                    <div id="pedestrian-modal" class="modal-overlay">
+                        <button class="close-modal-btn" onclick="closeModal('pedestrian-modal')">&times;</button>
+                        <div class="max-w-5xl w-full h-full flex items-center justify-center">
+                            <img src="https://i.imgur.com/wwRLxHe.jpeg" alt="Pedestrian Perspective" class="max-w-full max-h-full object-contain shadow-2xl" onclick="openSnapshotPopup()">
+                        </div>
+                    </div>
 
-      <a href="file:///D:/Users/baraka/Documents/Net%20Website/Pathfinder%20for%20Github%20-%20Copy/index.html" 
-         class="inline-block border border-outline-variant/30 text-on-surface px-12 py-5 font-bold uppercase tracking-[0.2em] text-xs hover:bg-surface-container-highest transition-colors">
-        Back to Home 
-      </a>
+                </div>
+            </div>
+        </section>
 
-    </div>
-  </div>
-</section>
-</main>
-<!-- Footer -->
-<footer class="w-full py-12 px-10 flex flex-col md:flex-row justify-between items-center border-t border-[#4E4639]/20 bg-[#0E0E0E]">
-<div class="mb-8 md:mb-0">
-<span class="text-[#E9C176] font-serif text-xl uppercase tracking-widest">PathFinder</span>
-<p class="font-['Manrope'] text-[0.6875rem] tracking-[0.1em] uppercase text-[#E5E2E1]/50 mt-2">© PathFinder Editorial. By Baraka Thiongo and Safia Sithole.</p>
-</div>
-<div class="flex gap-12">
-<a class="font-['Manrope'] text-[0.6875rem] tracking-[0.1em] uppercase text-[#E5E2E1]/50 hover:text-[#E9C176] transition-colors" href="#">ARPL3030</a>
-<a class="font-['Manrope'] text-[0.6875rem] tracking-[0.1em] uppercase text-[#E5E2E1]/50 hover:text-[#E9C176] transition-colors" href="#">2026</a>
-<a class="font-['Manrope'] text-[0.6875rem] tracking-[0.1em] uppercase text-[#E5E2E1]/50 hover:text-[#E9C176] transition-colors" href="#">Motion Visual Salon</a>
-</div>
-</footer>
-</body></html>
+        <div id="mini-popup" class="mini-popup-overlay" onclick="closeMiniPopup()">
+            <div class="mini-popup-content" onclick="event.stopPropagation()">
+                <button class="absolute top-4 right-6 text-primary text-3xl hover:scale-110 transition-transform" onclick="closeMiniPopup()">&times;</button>
+                <div class="snapshot-img-container">
+                    <img src="https://i.imgur.com/34vVupM.png" alt="Large Reference Snapshot">
+                </div>
+                <p class="font-label text-[0.7rem] uppercase tracking-[0.3em] text-primary/60 pt-4 text-center">Reference Perspective</p>
+            </div>
+        </div>
+
+        <section class="py-40 text-center relative overflow-hidden">
+            <div class="absolute inset-0 opacity-10 pointer-events-none select-none">
+                <span class="serif-headline text-[20rem] absolute -top-40 -left-20 text-primary-container font-bold">WAY</span>
+                <span class="serif-headline text-[20rem] absolute -bottom-40 -right-20 text-primary-container font-bold">PATH</span>
+            </div>
+            <div class="relative z-10 max-w-3xl mx-auto px-6">
+                <h2 class="serif-headline text-5xl md:text-7xl mb-12">Lose yourself to <span class="italic text-primary">find</span> the way.</h2>
+                <div class="flex flex-col sm:flex-row justify-center gap-6">
+                    <a href="findyourplace.html" class="inline-block bg-primary text-on-primary px-12 py-5 font-bold uppercase tracking-[0.2em] text-xs transition-all hover:bg-white hover:text-black">
+                        See Created Places
+                    </a>
+                    <a href="index.html" class="inline-block border border-outline-variant/30 text-on-surface px-12 py-5 font-bold uppercase tracking-[0.2em] text-xs hover:bg-surface-container-highest transition-colors">
+                        Back to Home 
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="w-full py-12 px-10 flex flex-col md:flex-row justify-between items-center border-t border-[#4E4639]/20 bg-[#0E0E0E]">
+        <div class="mb-8 md:mb-0">
+            <span class="text-[#E9C176] font-headline text-xl uppercase tracking-widest">PathFinder</span>
+            <p class="font-body text-[0.6875rem] tracking-[0.1em] uppercase text-[#E5E2E1]/50 mt-2">© PathFinder Editorial. By Baraka Thiongo and Safia Sithole.</p>
+        </div>
+        <div class="flex gap-12">
+            <a class="font-body text-[0.6875rem] tracking-[0.1em] uppercase text-[#E5E2E1]/50 hover:text-[#E9C176] transition-colors" href="https://ulwazi.wits.ac.za/courses/86588" target="_blank">ARPL3030</a>
+            <a class="font-body text-[0.6875rem] tracking-[0.1em] uppercase text-[#E5E2E1]/50 hover:text-[#E9C176] transition-colors" href="#">2026</a>
+            <a class="font-body text-[0.6875rem] tracking-[0.1em] uppercase text-[#E5E2E1]/50 hover:text-[#E9C176] transition-colors" href="#">Motion Visual Salon</a>
+        </div>
+    </footer>
+
+    <script>
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) modal.classList.add('active');
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) modal.classList.remove('active');
+        }
+
+        function openSnapshotPopup() {
+            const popup = document.getElementById('mini-popup');
+            popup.classList.add('active');
+        }
+
+        function closeMiniPopup() {
+            document.getElementById('mini-popup').classList.remove('active');
+        }
+
+        document.querySelectorAll('.modal-overlay').forEach(modal => {
+            modal.addEventListener('click', function(e) {
+                if (e.target === this) this.classList.remove('active');
+            });
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.modal-overlay, .mini-popup-overlay').forEach(modal => {
+                    modal.classList.remove('active');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
