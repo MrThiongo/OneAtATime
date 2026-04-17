@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&family=Manrope:wght@300;400;600;800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ffdea5",
+                        "primary-container": "#e9c176",
+                        "on-primary": "#412d00",
+                        "background": "#131313",
+                        "on-surface": "#e5e2e1",
+                        "on-surface-variant": "#d1c5b4"
+                    },
+                    fontFamily: {
+                        "headline": ["Noto Serif", "serif"],
+                        "body": ["Manrope", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { 
+            background-color: #131313; 
+            color: #E5E2E1; 
+            font-family: 'Manrope', sans-serif; 
+        }
+        .material-symbols-outlined { 
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; 
+        }
+        
+        /* Masonry Grid */
+        .archive-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            padding: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        @media (min-width: 1024px) {
+            .archive-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        
+        @media (min-width: 768px) and (max-width: 1023px) {
+            .archive-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        @media (max-width: 767px) {
+            .archive-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 16px;
+                padding: 20px;
+            }
+        }
+        
+        /* Staggered heights for visual interest */
+        .archive-item:nth-child(2) { grid-row: span 2; }
+        .archive-item:nth-child(5) { grid-row: span 2; }
+        .archive-item:nth-child(7) { grid-row: span 1.5; }
+        
+        @media (max-width: 767px) {
+            .archive-item:nth-child(2) { grid-row: span 1; }
+            .archive-item:nth-child(5) { grid-row: span 1; }
+            .archive-item:nth-child(7) { grid-row: span 1; }
+        }
+        
+        .archive-item {
+            position: relative;
+            overflow: hidden;
+            background: #1a1a1a;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            border: 1px solid rgba(233, 193, 118, 0.1);
+        }
+        
+        .archive-item:hover {
+            border-color: rgba(233, 193, 118, 0.4);
+            box-shadow: 0 0 40px rgba(233, 193, 118, 0.2);
+        }
+        
+        .archive-item img,
+        .archive-item video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        
+        .archive-item:hover img,
+        .archive-item:hover video {
+            transform: scale(1.1);
+        }
+        
+        .archive-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.6) 100%);
+            display: flex;
+            align-items: flex-end;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        
+        .archive-item:hover .archive-overlay {
+            opacity: 1;
+        }
+        
+        .archive-label {
+            font-family: 'Manrope', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #ffdea5;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+        }
+        
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: rgba(233, 193, 118, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: all 0.4s ease;
+        }
+        
+        .archive-item:hover .play-button {
+            opacity: 1;
+        }
+        
+        /* Fullscreen modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.98);
+            z-index: 100;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-overlay.active {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .modal-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90vh;
+        }
+        
+        .modal-content img,
+        .modal-content video {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            width: 48px;
+            height: 48px;
+            background: #e9c176;
+            color: #131313;
+            border: none;
+            cursor: pointer;
+            font-size: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 101;
+        }
+        
+        .modal-close:hover {
+            transform: rotate(90deg) scale(1.1);
+            background: #ffdea5;
+        }
+        
+        .scroll-arrow {
+            animation: scroll-arrow 2s ease-in-out infinite;
+        }
+        
+        @keyframes scroll-arrow {
+            0%, 100% { transform: translateY(0); opacity: 1; }
+            50% { transform: translateY(8px); opacity: 0.5; }
+        }
+        
+        /* Stagger animation for grid items */
+        @keyframes gridFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .archive-item {
+            animation: gridFadeIn 0.6s ease forwards;
+        }
+        
+        .archive-item:nth-child(1) { animation-delay: 0.05s; }
+        .archive-item:nth-child(2) { animation-delay: 0.1s; }
+        .archive-item:nth-child(3) { animation-delay: 0.15s; }
+        .archive-item:nth-child(4) { animation-delay: 0.2s; }
+        .archive-item:nth-child(5) { animation-delay: 0.25s; }
+        .archive-item:nth-child(6) { animation-delay: 0.3s; }
+        .archive-item:nth-child(7) { animation-delay: 0.35s; }
+    </style>
+</head>
+<body>
+    <nav class="fixed top-0 w-full z-50 flex justify-between items-center px-10 py-6 bg-[#131313]/80 backdrop-blur-2xl">
+        <div class="font-headline text-3xl font-bold uppercase text-primary-container">
+            <a href="index.html">PathFinder</a>
+        </div>
+        <div class="hidden md:flex items-center gap-10">
+            <a class="font-headline text-lg text-on-surface/60 hover:text-on-surface transition-colors" href="index.html">Home</a>
+            <a class="font-headline text-lg text-on-surface/60 hover:text-on-surface transition-colors" href="findyourway.html">The Art of Transit</a>
+            <a class="font-headline text-lg text-on-surface/60 hover:text-on-surface transition-colors" href="findyourplace.html">Curated Places</a>
+            <a class="font-headline text-lg text-primary border-b-2 border-primary-container pb-1" href="archive.html">Archive</a>
+        </div>
+        <span class="material-symbols-outlined text-2xl text-primary cursor-pointer md:hidden">menu</span>
+    </nav>
+
+    <main class="pt-20">
+        <!-- Hero Section -->
+        <section class="relative h-96 flex flex-col items-start justify-end p-12 md:p-24 overflow-hidden">
+            <div class="absolute inset-0 z-0">
+                <div class="absolute inset-0 bg-gradient-to-br from-primary-container/20 via-background to-background"></div>
+            </div>
+            <div class="relative z-10">
+                <h1 class="font-headline text-5xl md:text-7xl text-on-surface mb-4">Archive</h1>
+                <p class="font-body text-on-surface-variant text-lg max-w-lg mb-8">A collection of moments, movements, and places from the PathFinder journey.</p>
+                <button onclick="document.getElementById('gallery-section').scrollIntoView({ behavior: 'smooth' })" class="inline-flex items-center space-x-4 text-primary uppercase font-bold tracking-widest text-xs">
+                    <span>View Collection</span>
+                    <span class="material-symbols-outlined scroll-arrow">arrow_downward</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Archive Gallery -->
+        <section id="gallery-section" class="py-20 bg-background">
+            <div class="archive-grid">
+                <!-- Video 1: Transit Movement -->
+                <div class="archive-item aspect-video" onclick="openModal('modal-1')">
+                    <video muted class="object-cover"><source src="https://i.imgur.com/yIyTNtZ.mp4" type="video/mp4"></video>
+                    <div class="play-button">
+                        <span class="material-symbols-outlined text-white" style="font-size: 32px;">play_arrow</span>
+                    </div>
+                    <div class="archive-overlay">
+                        <span class="archive-label">The Art of Transit</span>
+                    </div>
+                </div>
+
+                <!-- Image 2: Map -->
+                <div class="archive-item" onclick="openModal('modal-2')">
+                    <img src="https://i.imgur.com/AiNUyCL.png" alt="Sho't Left Map"/>
+                    <div class="archive-overlay">
+                        <span class="archive-label">Sho't Left - Navigation</span>
+                    </div>
+                </div>
+
+                <!-- Video 3: Urban Landscape -->
+                <div class="archive-item aspect-video" onclick="openModal('modal-3')">
+                    <video muted class="object-cover"><source src="https://i.imgur.com/lYJu9OS.mp4" type="video/mp4"></video>
+                    <div class="play-button">
+                        <span class="material-symbols-outlined text-white" style="font-size: 32px;">play_arrow</span>
+                    </div>
+                    <div class="archive-overlay">
+                        <span class="archive-label">Worlds Within Worlds</span>
+                    </div>
+                </div>
+
+                <!-- Image 4: Urban Street -->
+                <div class="archive-item aspect-video" onclick="openModal('modal-4')">
+                    <img src="https://i.imgur.com/HcOyGRc.jpeg" alt="Cinematic urban street photography"/>
+                    <div class="archive-overlay">
+                        <span class="archive-label">Find Your Place - Hero</span>
+                    </div>
+                </div>
+
+                <!-- Image 5: Street View -->
+                <div class="archive-item" onclick="openModal('modal-5')">
+                    <img src="https://i.imgur.com/gZYUPCA.jpeg" alt="Interior of minimalist concrete building"/>
+                    <div class="archive-overlay">
+                        <span class="archive-label">The Street View - CBD</span>
+                    </div>
+                </div>
+
+                <!-- Image 6: City Actors -->
+                <div class="archive-item aspect-video" onclick="openModal('modal-6')">
+                    <img src="https://i.imgur.com/dCHNVJI.jpeg" alt="Rooftop garden at dusk"/>
+                    <div class="archive-overlay">
+                        <span class="archive-label">City Actors - Rooftop</span>
+                    </div>
+                </div>
+
+                <!-- Image 7: Additional Asset -->
+                <div class="archive-item" onclick="openModal('modal-7')">
+                    <img src="https://i.imgur.com/JMH8KUs.jpeg" alt="Archive asset"/>
+                    <div class="archive-overlay">
+                        <span class="archive-label">Supplementary Asset</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="py-32 px-10 text-center bg-background">
+            <div class="max-w-3xl mx-auto">
+                <h2 class="font-headline text-4xl md:text-6xl mb-8 text-on-surface">Explore the Full Experience</h2>
+                <p class="font-body text-on-surface-variant text-lg mb-12">Dive deeper into the stories behind these images.</p>
+                <div class="flex flex-col sm:flex-row justify-center gap-6">
+                    <a href="findyourway.html" class="inline-block bg-primary text-on-primary px-12 py-4 font-bold uppercase tracking-widest text-xs hover:bg-primary-container transition-colors">
+                        The Art of Transit
+                    </a>
+                    <a href="findyourplace.html" class="inline-block bg-primary-container text-on-primary px-12 py-4 font-bold uppercase tracking-widest text-xs hover:bg-primary transition-colors">
+                        Curated Places
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modals for Full View -->
+    <div id="modal-1" class="modal-overlay" onclick="if(event.target === this) closeModal(this)">
+        <button class="modal-close" onclick="closeModal(this.parentElement)">✕</button>
+        <div class="modal-content">
+            <video controls style="width: 100%; max-width: 90vw; max-height: 90vh;">
+                <source src="https://i.imgur.com/yIyTNtZ.mp4" type="video/mp4">
+            </video>
+        </div>
+    </div>
+
+    <div id="modal-2" class="modal-overlay" onclick="if(event.target === this) closeModal(this)">
+        <button class="modal-close" onclick="closeModal(this.parentElement)">✕</button>
+        <div class="modal-content">
+            <img src="https://i.imgur.com/AiNUyCL.png" alt="Sho't Left Map"/>
+        </div>
+    </div>
+
+    <div id="modal-3" class="modal-overlay" onclick="if(event.target === this) closeModal(this)">
+        <button class="modal-close" onclick="closeModal(this.parentElement)">✕</button>
+        <div class="modal-content">
+            <video controls style="width: 100%; max-width: 90vw; max-height: 90vh;">
+                <source src="https://i.imgur.com/lYJu9OS.mp4" type="video/mp4">
+            </video>
+        </div>
+    </div>
+
+    <div id="modal-4" class="modal-overlay" onclick="if(event.target === this) closeModal(this)">
+        <button class="modal-close" onclick="closeModal(this.parentElement)">✕</button>
+        <div class="modal-content">
+            <img src="https://i.imgur.com/HcOyGRc.jpeg" alt="Cinematic urban street photography"/>
+        </div>
+    </div>
+
+    <div id="modal-5" class="modal-overlay" onclick="if(event.target === this) closeModal(this)">
+        <button class="modal-close" onclick="closeModal(this.parentElement)">✕</button>
+        <div class="modal-content">
+            <img src="https://i.imgur.com/gZYUPCA.jpeg" alt="Interior of minimalist concrete building"/>
+        </div>
+    </div>
+
+    <div id="modal-6" class="modal-overlay" onclick="if(event.target === this) closeModal(this)">
+        <button class="modal-close" onclick="closeModal(this.parentElement)">✕</button>
+        <div class="modal-content">
+            <img src="https://i.imgur.com/dCHNVJI.jpeg" alt="Rooftop garden at dusk"/>
+        </div>
+    </div>
+
+    <div id="modal-7" class="modal-overlay" onclick="if(event.target === this) closeModal(this)">
+        <button class="modal-close" onclick="closeModal(this.parentElement)">✕</button>
+        <div class="modal-content">
+            <img src="https://i.imgur.com/JMH8KUs.jpeg" alt="Archive asset"/>
+        </div>
+    </div>
+
+    <footer class="w-full py-12 px-10 border-t border-outline-variant/20 bg-[#0E0E0E] text-center md:text-left">
+        <span class="text-primary-container font-headline text-xl uppercase">PathFinder</span>
+        <p class="font-body text-[0.6875rem] text-on-surface/50 mt-2">© PathFinder Editorial. Baraka Thiongo & Safia Sithole.</p>
+    </footer>
+
+    <script>
+        function openModal(id) {
+            document.getElementById(id).classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(modalElement) {
+            modalElement.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.modal-overlay.active').forEach(modal => {
+                    modal.classList.remove('active');
+                });
+                document.body.style.overflow = 'auto';
+            }
+        });
+    </script>
+</body>
+</html>
