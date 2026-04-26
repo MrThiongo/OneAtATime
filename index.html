@@ -1,289 +1,943 @@
 <!DOCTYPE html>
-
-<html class="dark" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>PathFinder | The Digital Gallery</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Manrope:wght@300;400;600;800&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            "colors": {
-                    "on-surface-variant": "#d1c5b6",
-                    "primary": "#e9c176",
-                    "inverse-on-surface": "#313030",
-                    "on-secondary-fixed-variant": "#474746",
-                    "on-background": "#e5e2e1",
-                    "surface-container": "#201f1f",
-                    "on-primary": "#412d00",
-                    "surface-bright": "#3a3939",
-                    "secondary-container": "#474746",
-                    "secondary-fixed": "#e4e2e1",
-                    "surface-container-low": "#1c1b1b",
-                    "surface-container-lowest": "#0e0e0e",
-                    "on-primary-fixed-variant": "#5d4201",
-                    "inverse-primary": "#775a19",
-                    "background": "#131313",
-                    "on-secondary-fixed": "#1b1c1c",
-                    "on-tertiary-fixed": "#0d1d2a",
-                    "surface-container-high": "#2a2a2a",
-                    "on-secondary-container": "#b6b5b4",
-                    "surface-variant": "#353534",
-                    "tertiary-container": "#8594a5",
-                    "error": "#ffb4ab",
-                    "surface-container-highest": "#353534",
-                    "primary-fixed": "#ffdea5",
-                    "outline-variant": "#4e453a",
-                    "on-secondary": "#303030",
-                    "surface-tint": "#e9c176",
-                    "tertiary": "#b8c8da",
-                    "primary-fixed-dim": "#e9c176",
-                    "outline": "#9a8f81",
-                    "on-surface": "#e5e2e1",
-                    "on-primary-container": "#3b2800",
-                    "surface-dim": "#131313",
-                    "on-error-container": "#ffdad6",
-                    "on-error": "#690005",
-                    "primary-container": "#b18d48",
-                    "secondary": "#c8c6c5",
-                    "on-tertiary-container": "#1e2d3a",
-                    "inverse-surface": "#e5e2e1",
-                    "error-container": "#93000a",
-                    "tertiary-fixed": "#d4e4f6",
-                    "surface": "#131313",
-                    "on-tertiary-fixed-variant": "#394857",
-                    "on-tertiary": "#23323f",
-                    "on-primary-fixed": "#261900",
-                    "tertiary-fixed-dim": "#b8c8da",
-                    "secondary-fixed-dim": "#c8c6c5"
-            },
-            "borderRadius": {
-                    "DEFAULT": "0.125rem",
-                    "lg": "0.25rem",
-                    "xl": "0.5rem",
-                    "full": "0.75rem"
-            },
-            "fontFamily": {
-                    "headline": ["Noto Serif"],
-                    "body": ["Manrope"],
-                    "label": ["Manrope"]
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>PathFinder — Johannesburg</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Manrope:wght@300;400;600;800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "inverse-on-surface": "#313030",
+                        "on-error": "#690005",
+                        "on-tertiary-fixed-variant": "#314672",
+                        "on-secondary-fixed-variant": "#4d463a",
+                        "on-surface-variant": "#d1c5b4",
+                        "surface-container-lowest": "#0e0e0e",
+                        "on-primary-fixed": "#261900",
+                        "surface-container-highest": "#353534",
+                        "surface-dim": "#131313",
+                        "inverse-surface": "#e5e2e1",
+                        "primary-fixed": "#ffdea5",
+                        "tertiary-fixed-dim": "#b1c6fa",
+                        "on-primary-container": "#6a4e0c",
+                        "surface": "#131313",
+                        "on-primary": "#412d00",
+                        "secondary": "#d1c5b6",
+                        "error": "#ffb4ab",
+                        "tertiary": "#d8e2ff",
+                        "surface-bright": "#393939",
+                        "surface-container-low": "#1c1b1b",
+                        "primary-fixed-dim": "#e9c176",
+                        "inverse-primary": "#775a19",
+                        "surface-container-high": "#2a2a2a",
+                        "outline-variant": "#4e4639",
+                        "on-tertiary": "#192f5a",
+                        "on-secondary-fixed": "#211b11",
+                        "tertiary-fixed": "#d9e2ff",
+                        "secondary-container": "#4d463a",
+                        "primary-container": "#e9c176",
+                        "surface-container": "#201f1f",
+                        "secondary-fixed-dim": "#d1c5b6",
+                        "on-secondary": "#362f25",
+                        "on-background": "#e5e2e1",
+                        "error-container": "#93000a",
+                        "background": "#131313",
+                        "primary": "#ffdea5",
+                        "on-error-container": "#ffdad6",
+                        "on-secondary-container": "#bfb3a5",
+                        "surface-tint": "#e9c176",
+                        "outline": "#9a8f80",
+                        "on-primary-fixed-variant": "#5d4200",
+                        "on-tertiary-container": "#3d527f",
+                        "on-surface": "#e5e2e1",
+                        "surface-variant": "#353534",
+                        "secondary-fixed": "#ede1d1",
+                        "tertiary-container": "#b1c6fa",
+                        "on-tertiary-fixed": "#001a43"
+                    },
+                    borderRadius: {
+                        DEFAULT: "0px", lg: "0px", xl: "0px", full: "9999px"
+                    },
+                    fontFamily: {
+                        headline: ["Noto Serif"],
+                        body: ["Manrope"],
+                        label: ["Manrope"]
+                    }
+                }
             }
-          },
-        },
-      }
+        }
     </script>
-<style>
+
+    <style>
+        /* ─── BASE ─────────────────────────────────────────────────── */
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
         body {
             background-color: #131313;
             color: #E5E2E1;
             font-family: 'Manrope', sans-serif;
             overflow-x: hidden;
         }
-        .font-serif { font-family: 'Noto Serif', serif; }
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        .serif-headline { font-family: 'Noto Serif', serif; }
+
+        /* ─── PAGE BACKGROUND IMAGE ─────────────────────────────────── */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url('https://i.imgur.com/JMH8KUs.jpeg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.07;
+            z-index: 0;
+            pointer-events: none;
         }
-        .cinematic-overlay {
-            background: linear-gradient(to bottom, rgba(19, 19, 19, 0.4) 0%, rgba(19, 19, 19, 0.1) 50%, rgba(19, 19, 19, 0.9) 100%);
+
+        /* ─── SCROLLBAR ─────────────────────────────────────────────── */
+        ::-webkit-scrollbar { width: 3px; }
+        ::-webkit-scrollbar-track { background: #131313; }
+        ::-webkit-scrollbar-thumb { background: #4e4639; }
+
+        /* ─── CARDS ─────────────────────────────────────────────────── */
+        .pf-card {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
         }
-        .text-glow {
-            text-shadow: 0 0 30px rgba(233, 193, 118, 0.2);
+        .pf-card-media {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 1.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            will-change: transform;
         }
-        @keyframes scale-gentle {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.02); }
+        .pf-card:hover .pf-card-media {
+            transform: scale(1.06);
         }
-        .hero-image {
-            animation: scale-gentle 12s ease-in-out infinite;
+        .pf-card-scrim {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                160deg,
+                rgba(13,13,13,0.15) 0%,
+                rgba(13,13,13,0.55) 50%,
+                rgba(13,13,13,0.96) 100%
+            );
+            transition: background 0.6s ease;
         }
-        .sun-flare {
+        .pf-card:hover .pf-card-scrim {
+            background: linear-gradient(
+                160deg,
+                rgba(13,13,13,0.08) 0%,
+                rgba(13,13,13,0.45) 50%,
+                rgba(13,13,13,0.90) 100%
+            );
+        }
+        .pf-card-body {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 2rem 2.25rem;
+            z-index: 10;
+        }
+        /* enter arrow appears on hover */
+        .card-cta {
+            opacity: 0;
+            transform: translateX(-6px);
+            transition: opacity 0.45s ease, transform 0.45s ease;
+        }
+        .pf-card:hover .card-cta {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        /* border accent line on hover */
+        .pf-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #E9C176;
+            transition: width 0.7s cubic-bezier(0.76, 0, 0.24, 1);
+            z-index: 20;
+        }
+        .pf-card:hover::after { width: 100%; }
+
+        /* ─── EXPERIENCE MODAL ──────────────────────────────────────── */
+        .exp-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 200;
+            background: #0a0a0a;
+            overflow: hidden;
+        }
+        .exp-modal.active { display: block; }
+
+        /* ─── SLIDES ─────────────────────────────────────────────────── */
+        .slides-viewport {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        .slides-track {
+            display: flex;
+            height: 100%;
+            transition: transform 0.75s cubic-bezier(0.77, 0, 0.175, 1);
+            will-change: transform;
+        }
+        .slide {
+            min-width: 100%;
+            height: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* ─── SLIDE LAYOUT: image + text panel ──────────────────────── */
+        .slide-split {
+            display: flex;
+            width: 100%;
+            height: 100%;
+        }
+        .slide-img-panel {
+            flex: 0 0 52%;
             position: relative;
             overflow: hidden;
         }
-        .sun-flare::before {
-            content: '';
+        .slide-img-panel img {
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0) 70%);
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .slide-text-panel {
+            flex: 0 0 48%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 3.5rem 3.5rem 3.5rem 4rem;
+            background: #0a0a0a;
+            overflow-y: auto;
+        }
+
+        /* ─── CAPTION BOX ────────────────────────────────────────────── */
+        .caption-box {
+            background: rgba(233, 193, 118, 0.05);
+            border-left: 2px solid rgba(233, 193, 118, 0.3);
+            padding: 1rem 1.25rem;
+            margin-top: 1.75rem;
+        }
+        .caption-coords {
+            font-family: 'Manrope', sans-serif;
+            font-size: 0.6rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: rgba(233, 193, 118, 0.55);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        /* ─── SLIDE NAV ARROWS ───────────────────────────────────────── */
+        .slide-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(10, 10, 10, 0.75);
+            border: 1px solid rgba(233, 193, 118, 0.18);
+            color: #E9C176;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.3s ease, border-color 0.3s ease;
+            z-index: 60;
+            backdrop-filter: blur(12px);
+        }
+        .slide-arrow:hover {
+            background: rgba(233, 193, 118, 0.12);
+            border-color: rgba(233, 193, 118, 0.45);
+        }
+        .slide-arrow-prev { left: 20px; }
+        .slide-arrow-next { right: 20px; }
+        .slide-arrow.faded {
             opacity: 0;
             pointer-events: none;
         }
-        @keyframes flare-shine {
-            0%, 100% { opacity: 0; transform: translate(0, 0) scale(0.5); }
-            50% { opacity: 1; transform: translate(-20px, -20px) scale(1); }
+
+        /* ─── MODAL CHROME ───────────────────────────────────────────── */
+        .modal-close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+            background: rgba(10, 10, 10, 0.75);
+            border: 1px solid rgba(233, 193, 118, 0.18);
+            color: #E9C176;
+            width: 42px;
+            height: 42px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            backdrop-filter: blur(12px);
+            font-size: 20px;
+            line-height: 1;
+            transition: background 0.3s ease;
         }
-        .sun-flare:hover::before {
-            animation: flare-shine 1.5s ease-in-out forwards;
+        .modal-close-btn:hover { background: rgba(233, 193, 118, 0.12); }
+        .modal-brand {
+            position: absolute;
+            top: 22px;
+            left: 24px;
+            z-index: 100;
+            font-family: 'Noto Serif', serif;
+            font-size: 0.75rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: rgba(233, 193, 118, 0.45);
+            pointer-events: none;
+        }
+
+        /* ─── PROGRESS DOTS ──────────────────────────────────────────── */
+        .prog-dot {
+            height: 3px;
+            background: rgba(233, 193, 118, 0.2);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            min-width: 14px;
+        }
+        .prog-dot.on {
+            background: #E9C176;
+            min-width: 30px;
+        }
+
+        /* ─── ANIMATIONS ─────────────────────────────────────────────── */
+        @keyframes arrow-pulse {
+            0%, 100% { transform: translateX(0); opacity: 1; }
+            50% { transform: translateX(7px); opacity: 0.55; }
+        }
+        .arrow-pulse { animation: arrow-pulse 2s ease-in-out infinite; }
+
+        @keyframes fade-up {
+            from { opacity: 0; transform: translateY(18px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        .fade-up {
+            animation: fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+        .delay-1 { animation-delay: 0.15s; }
+        .delay-2 { animation-delay: 0.3s; }
+        .delay-3 { animation-delay: 0.45s; }
+        .delay-4 { animation-delay: 0.6s; }
+
+        /* ─── CTA SLIDE ──────────────────────────────────────────────── */
+        .cta-slide-bg {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .cta-slide-bg span {
+            font-family: 'Noto Serif', serif;
+            font-size: clamp(8rem, 22vw, 20rem);
+            font-weight: 700;
+            color: rgba(233, 193, 118, 0.04);
+            position: absolute;
+            line-height: 1;
+            white-space: nowrap;
+            user-select: none;
+        }
+
+        /* ─── HERO SLIDE GRADIENTS ───────────────────────────────────── */
+        .hero-grad-left {
+            background: linear-gradient(to right, rgba(10,10,10,0.92) 0%, rgba(10,10,10,0.5) 55%, transparent 100%);
+        }
+        .hero-grad-right {
+            background: linear-gradient(to left, rgba(10,10,10,0.92) 0%, rgba(10,10,10,0.5) 55%, transparent 100%);
+        }
+        .hero-grad-top {
+            background: linear-gradient(to top, rgba(10,10,10,0.9) 0%, transparent 60%);
         }
     </style>
 </head>
-<body class="bg-background text-on-surface">
-<!-- TopAppBar -->
-<header class="fixed top-0 w-full z-50 bg-[#131313]/60 backdrop-blur-xl transition-all duration-400 ease-out">
-<div class="flex justify-between items-center w-full px-8 py-6">
-<div class="font-headline text-3xl tracking-tight text-[#E5E2E1] font-bold uppercase">PathFinder</div>
-<nav class="hidden md:flex space-x-12 items-center">
-<a class="text-[#E9C176] font-semibold hover:text-[#E9C176] transition-all duration-400 ease-out text-sm tracking-widest uppercase" href="index.html">Home</a>
-<a class="text-[#D1C5B6] hover:text-[#E9C176] transition-all duration-400 ease-out text-sm tracking-widest uppercase" href="findyourway.html">More Than Transit</a>
-<a class="text-[#D1C5B6] hover:text-[#E9C176] transition-all duration-400 ease-out text-sm tracking-widest uppercase" href="findyourplace.html">Created Spaces</a>
-<a class="text-[#D1C5B6] hover:text-[#E9C176] transition-all duration-400 ease-out text-sm tracking-widest uppercase" href="archive.html">Archive</a>
-</nav>
-<button class="p-2 text-[#E9C176] hover:scale-110 transition-all duration-400">
-<span class="material-symbols-outlined text-3xl">menu</span>
-</button>
-</div>
-</header>
-<!-- SideNavBar (Hidden by default, triggered by menu) -->
-<div class="hidden fixed inset-y-0 right-0 w-80 z-[60] bg-[#2A2A2A]/90 backdrop-blur-3xl flex-col h-full p-12 space-y-8">
-<div class="mb-12">
-<h2 class="font-headline text-4xl text-[#E9C176] font-bold uppercase">PathFinder</h2>
-<p class="text-sm font-body text-on-surface-variant">The Digital Gallery</p>
-</div>
-<nav class="flex flex-col space-y-6">
-<a class="text-[#E9C176] border-b border-[#E9C176]/20 py-2 flex items-center group" href="index.html">
-<span class="material-symbols-outlined mr-4">home</span>
-<span class="font-body text-lg">Home</span>
-</a>
-<a class="text-[#D1C5B6] hover:bg-[#353534] hover:text-[#E9C176] transition-colors py-2 flex items-center group px-2 rounded" href="findyourway.html">
-<span class="material-symbols-outlined mr-4">explore</span>
-<span class="font-body text-lg">More Than Transit</span>
-</a>
-<a class="text-[#D1C5B6] hover:bg-[#353534] hover:text-[#E9C176] transition-colors py-2 flex items-center group px-2 rounded" href="findyourplace.html">
-<span class="material-symbols-outlined mr-4">location_on</span>
-<span class="font-body text-lg">Creating Spaces</span>
-</a>
-<a class="text-[#D1C5B6] hover:bg-[#353534] hover:text-[#E9C176] transition-colors py-2 flex items-center group px-2 rounded" href="#">
-<span class="material-symbols-outlined mr-4">grid_view</span>
-<span class="font-body text-lg">Gallery</span>
-</a>
-</nav>
-</div>
-<main class="relative">
-<!-- Landing Page -->
+<body class="selection:bg-primary-container selection:text-on-primary-container">
 
-<!-- Safia Hero INSERT HERE -->
-<section class="relative h-screen w-full flex items-center justify-center overflow-hidden">
-<!-- Background "Video" Placeholder using high-end image -->
-<div class="absolute inset-0 z-0">
-<img class="w-full h-full object-cover scale-105 hero-image" alt="Safia Taxi Landing" src="https://i.imgur.com/JMH8KUs.jpeg"/>
-<div class="absolute inset-0 cinematic-overlay"></div>
-</div>
-<div class="relative z-10 text-center px-4 max-w-5xl flex flex-col items-center justify-center h-full">
-<h1 class="font-headline text-6xl md:text-9xl font-bold tracking-tighter text-[#E5E2E1] mb-6 text-glow">
-                    PathFinder
-                </h1>
-<p class="font-body text-lg md:text-xl text-[#D1C5B6] tracking-[0.5em] uppercase font-dark mb-24">
-                    Curate Your Journey
-                </p>
-<div class="flex flex-col sm:flex-row gap-8 items-center justify-center">
-<a href="findyourway.html" class="sun-flare relative bg-primary text-on-primary px-8 md:px-12 py-4 font-bold uppercase tracking-[0.15em] text-xs md:text-sm transition-all hover:scale-105 active:scale-95 shadow-lg">
-                        More Than Transit
-                    </a>
-<a href="findyourplace.html" class="sun-flare relative border-2 border-primary text-primary px-8 md:px-12 py-4 font-bold uppercase tracking-[0.15em] text-xs md:text-sm transition-all hover:scale-105 hover:bg-primary hover:text-on-primary active:scale-95">
-                        Created Places
-                    </a>
-</div>
-</div>
-</section>
-<!-- Safias Landing End
-<!--Landing Page End-->
-<!--Deleting everything below this lowkey -->
-<!-- Section 1: Find your way 
+    <!-- ════════════════════════════════════════════════════════════ -->
+    <!--  NAV                                                         -->
+    <!-- ════════════════════════════════════════════════════════════ -->
+    <nav class="fixed top-0 w-full z-50 flex justify-between items-center px-8 md:px-10 py-5 bg-[#131313]/80 backdrop-blur-2xl shadow-[0_24px_48px_rgba(0,0,0,0.5),0_8px_16px_rgba(233,193,118,0.04)]">
+        <div class="font-headline text-2xl font-bold uppercase text-[#E9C176] tracking-wider">
+            <a href="index.html">PathFinder</a>
+        </div>
+        <div class="hidden md:flex items-center gap-8">
+            <a class="font-headline text-base tracking-tight text-[#FFDEA5] border-b border-[#E9C176]/50 pb-0.5" href="index.html">Home</a>
+            <button class="font-headline text-base tracking-tight text-[#E5E2E1]/55 hover:text-[#E5E2E1] transition-colors duration-300 bg-transparent border-none cursor-pointer" onclick="openExperience('transit')">The Art of Transit</button>
+            <button class="font-headline text-base tracking-tight text-[#E5E2E1]/55 hover:text-[#E5E2E1] transition-colors duration-300 bg-transparent border-none cursor-pointer" onclick="openExperience('places')">Created Spaces</button>
+            <a class="font-headline text-base tracking-tight text-[#E5E2E1]/55 hover:text-[#E5E2E1] transition-colors duration-300" href="archive.html">Archive</a>
+        </div>
+        <div class="flex items-center text-[#FFDEA5]">
+            <span class="material-symbols-outlined text-2xl cursor-pointer">menu</span>
+        </div>
+    </nav>
+
+    <!-- ════════════════════════════════════════════════════════════ -->
+    <!--  MAIN — CARD GRID                                            -->
+    <!-- ════════════════════════════════════════════════════════════ -->
+    <main class="relative z-10 min-h-screen flex flex-col justify-center px-8 md:px-12 lg:px-16 pt-28 pb-12">
+
+        <!-- Page intro -->
+        <div class="mb-10 fade-up">
+            <div class="flex items-center gap-4 mb-5">
+                <span class="w-8 h-px bg-primary/35"></span>
+                <span class="font-label text-[0.625rem] tracking-[0.45em] uppercase text-primary/50">Johannesburg · 2026 · PathFinder Editorial</span>
+            </div>
+            <h1 class="serif-headline text-5xl md:text-6xl lg:text-[5.5rem] text-on-surface leading-[0.93] tracking-tight">
+                Find Your <em class="text-primary not-italic">Path.</em>
+            </h1>
+        </div>
+
+        <!-- Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 h-[67vh] min-h-[460px] fade-up delay-2">
+
+            <!-- ── Card 1: The Art of Transit ── -->
+            <div class="pf-card" onclick="openExperience('transit')">
+                <video autoplay muted loop playsinline class="pf-card-media">
+                    <source src="https://i.imgur.com/yIyTNtZ.mp4" type="video/mp4">
+                </video>
+                <div class="pf-card-scrim"></div>
+                <div class="pf-card-body">
+                    <!-- Always-visible top label -->
+                    <div class="flex items-center gap-3">
+                        <span class="w-5 h-px bg-primary/50"></span>
+                        <span class="font-label text-[0.625rem] tracking-[0.4em] uppercase text-primary/65">Perspective 01</span>
+                    </div>
+                    <!-- Bottom: title + desc + cta -->
+                    <div>
+                        <span class="font-label text-[0.625rem] tracking-[0.3em] uppercase text-primary/45 block mb-3">The Art of Transit</span>
+                        <h2 class="serif-headline text-3xl md:text-4xl lg:text-[2.75rem] text-on-surface leading-[0.97] mb-3">
+                            The Art<br/>of Transit
+                        </h2>
+                        <p class="font-body text-xs text-on-surface-variant leading-relaxed max-w-[240px] mb-5 opacity-75">
+                            Everyone talks about the chaos of Jozi roads. Come see the other side.
+                        </p>
+                        <div class="card-cta flex items-center gap-3 text-primary">
+                            <span class="font-label text-[0.6rem] tracking-[0.35em] uppercase border-b border-primary/35 pb-px">Enter</span>
+                            <span class="material-symbols-outlined text-sm arrow-pulse">arrow_forward</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── Card 2: Created Spaces ── -->
+            <div class="pf-card" onclick="openExperience('places')">
+                <img src="https://i.imgur.com/HcOyGRc.jpeg" alt="Created Spaces — Johannesburg" class="pf-card-media"/>
+                <div class="pf-card-scrim"></div>
+                <div class="pf-card-body">
+                    <!-- Always-visible top label -->
+                    <div class="flex items-center gap-3">
+                        <span class="w-5 h-px bg-primary/50"></span>
+                        <span class="font-label text-[0.625rem] tracking-[0.4em] uppercase text-primary/65">Perspective 02</span>
+                    </div>
+                    <!-- Bottom: title + desc + cta -->
+                    <div>
+                        <span class="font-label text-[0.625rem] tracking-[0.3em] uppercase text-primary/45 block mb-3">Created Spaces</span>
+                        <h2 class="serif-headline text-3xl md:text-4xl lg:text-[2.75rem] text-on-surface leading-[0.97] mb-3">
+                            Created<br/>Spaces
+                        </h2>
+                        <p class="font-body text-xs text-on-surface-variant leading-relaxed max-w-[240px] mb-5 opacity-75">
+                            You might think you've seen it all, until you see Joburg.
+                        </p>
+                        <div class="card-cta flex items-center gap-3 text-primary">
+                            <span class="font-label text-[0.6rem] tracking-[0.35em] uppercase border-b border-primary/35 pb-px">Enter</span>
+                            <span class="material-symbols-outlined text-sm arrow-pulse">arrow_forward</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Bottom bar -->
+        <div class="mt-5 flex items-center justify-between fade-up delay-3">
+            <p class="font-label text-[0.575rem] tracking-[0.2em] uppercase text-on-surface/20">
+                © PathFinder Editorial · Baraka Thiongo &amp; Safia Sithole · ARPL3030
+            </p>
+            <a href="archive.html" class="font-label text-[0.575rem] tracking-[0.25em] uppercase text-on-surface/20 hover:text-primary transition-colors duration-300">
+                View Archive →
+            </a>
+        </div>
+
+    </main>
 
 
-<section class="group relative h-screen w-full flex flex-col items-start justify-end p-12 md:p-24 overflow-hidden cursor-pointer transition-all duration-700">
-<!-- <div class="absolute inset-0 z-0 bg-surface-container-lowest"> 
-<div class="absolute inset-0 z-0 bg-surface-container-lowest">
+    <!-- ════════════════════════════════════════════════════════════ -->
+    <!--  TRANSIT MODAL — "The Art of Transit"                        -->
+    <!-- ════════════════════════════════════════════════════════════ -->
+    <div id="transit-modal" class="exp-modal">
 
-  <video 
-    autoplay 
-    muted 
-    loop 
-    playsinline 
-    class="w-full h-full object-cover opacity-60 group-hover:scale-110 group-hover:opacity-80 transition-all duration-[1500ms] ease-out"
-  >
+        <span class="modal-brand">PathFinder</span>
+        <button class="modal-close-btn" onclick="closeExperience('transit')">&times;</button>
 
-   <source src="https://i.imgur.com/yIyTNtZ.mp4" type="video/mp4">
-  </video>
+        <div class="slides-viewport">
+            <div class="slides-track" id="transit-track">
 
-  <div class="absolute inset-0 bg-gradient-to-r from-background via-transparent to-transparent opacity-80"></div>
-  <div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
+                <!-- ── SLIDE 0: Hero ── -->
+                <div class="slide">
+                    <div class="relative w-full h-full flex flex-col items-start justify-end px-12 md:px-20 pb-16 md:pb-24 overflow-hidden">
+                        <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover opacity-55">
+                            <source src="https://i.imgur.com/yIyTNtZ.mp4" type="video/mp4">
+                        </video>
+                        <div class="absolute inset-0 hero-grad-left"></div>
+                        <div class="absolute inset-0 hero-grad-top"></div>
+                        <div class="relative z-10 max-w-2xl">
+                            <div class="flex items-center space-x-4 mb-7">
+                                <span class="w-10 h-px bg-primary"></span>
+                                <span class="font-label text-primary tracking-[0.4em] uppercase text-[0.6875rem] font-bold">Perspective 01</span>
+                            </div>
+                            <h2 class="serif-headline text-5xl md:text-7xl lg:text-8xl text-on-surface mb-6 leading-[0.9]">The Art<br/>of Transit</h2>
+                            <p class="font-body text-on-surface-variant text-base md:text-lg max-w-sm leading-relaxed mb-10 opacity-85">
+                                Everyone talks about the chaos of Jozi roads. Laws feel optional, rage is inevitable, and risk is inescapable.
+                                Come see the other side, where the roads aren't a nuisance, but a place of connection and peace.
+                            </p>
+                            <button onclick="goToSlide('transit', 1)" class="inline-flex items-center gap-5 text-primary group/begin cursor-pointer">
+                                <span class="font-label text-[0.6875rem] tracking-[0.3em] uppercase font-bold border-b border-primary/30 pb-0.5 group-hover/begin:border-primary transition-all">Begin the journey</span>
+                                <span class="material-symbols-outlined arrow-pulse">arrow_forward</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
 
-</div>
+                <!-- ── SLIDE 1: Pause between movement ── -->
+                <div class="slide">
+                    <div class="slide-split">
+                        <div class="slide-img-panel">
+                            <img src="https://i.imgur.com/YY9tL6H.png" alt="Pause between movement — Johannesburg street scene"/>
+                        </div>
+                        <div class="slide-text-panel">
+                            <p class="font-label text-[0.6rem] tracking-[0.3em] uppercase text-primary-container mb-5">Urban Guide</p>
+                            <h2 class="serif-headline text-4xl md:text-5xl lg:text-6xl leading-[0.93] text-on-surface">
+                                Pause <br/><em class="text-primary">between</em><br/>movement
+                            </h2>
+                            <div class="caption-box">
+                                <p class="font-body text-sm text-on-surface-variant leading-[1.9]">
+                                    Look into the cars and the taxis, pay attention to the people walking through the street.
+                                    Notice that these are not just commuters commuting, but people living.
+                                </p>
+                            </div>
+                            <div class="mt-8 flex items-center gap-4">
+                                <div class="h-px flex-1 bg-outline-variant/20"></div>
+                                <span class="font-label text-[0.575rem] tracking-widest uppercase text-outline/60">01 · 04</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-</div>
-<div class="relative z-10 max-w-3xl">
-<div class="flex items-center space-x-4 mb-8">
-<span class="w-12 h-[1px] bg-primary"></span>
-<span class="font-label text-primary tracking-[0.4em] uppercase text-xs font-bold">Perspective 01</span>
-</div>
+                <!-- ── SLIDE 2: Sho't left ── -->
+                <div class="slide">
+                    <div class="slide-split">
+                        <div class="slide-img-panel">
+                            <img src="https://i.imgur.com/AiNUyCL.png" alt="Sho't left — Johannesburg transit map"/>
+                        </div>
+                        <div class="slide-text-panel">
+                            <p class="font-label text-[0.6rem] tracking-[0.3em] uppercase text-primary-container mb-5">01 / The Sho't Left</p>
+                            <h2 class="serif-headline text-4xl md:text-5xl lg:text-6xl leading-[0.93] text-on-surface">
+                                Sho't left
+                            </h2>
+                            <div class="caption-box">
+                                <p class="font-body text-sm text-on-surface-variant leading-[1.9]">
+                                    Past high-rise buildings, busy streets, and busy people.
+                                    Take a sho't left and have a closer look.
+                                </p>
+                            </div>
+                            <div class="mt-8 flex items-center gap-4">
+                                <div class="h-px flex-1 bg-outline-variant/20"></div>
+                                <span class="font-label text-[0.575rem] tracking-widest uppercase text-outline/60">02 · 04</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-<h2 class="font-serif text-5xl md:text-8xl text-on-surface mb-6 leading-tight">
-                    Find your way
-                </h2>
-<p class="font-body text-on-surface-variant text-lg md:text-xl max-w-md leading-relaxed mb-10">
-                    There's cars, the infamous taxis, public transport, and good old walking and cycling. Find all the ways to navigate joburg here.
-                </p>
-				
-<a href="findyourway.html" class="inline-flex items-center space-x-6 text-primary group/btn no-underline">
-        <span class="text-sm tracking-[0.3em] uppercase font-bold border-b border-primary/30 pb-1 group-hover/btn:border-primary transition-all duration-400">
-            View Collection
-        </span>
-        <span class="material-symbols-outlined translate-x-0 group-hover/btn:translate-x-4 transition-transform duration-400">
-            arrow_forward
-        </span>
-    </a>
-</div>
-</section>
-<!--Section 1 End -->
+                <!-- ── SLIDE 3: Bona iTaxi ── -->
+                <div class="slide">
+                    <div class="slide-split">
+                        <div class="slide-img-panel">
+                            <img src="https://i.imgur.com/91xh684.jpeg" alt="Bona iTaxi — minibus taxi, Johannesburg"/>
+                        </div>
+                        <div class="slide-text-panel">
+                            <p class="font-label text-[0.6rem] tracking-[0.3em] uppercase text-primary-container mb-5">02 / Public or Private?</p>
+                            <h2 class="serif-headline text-4xl md:text-5xl lg:text-6xl leading-[0.93] text-on-surface">
+                                Bona iTaxi
+                            </h2>
+                            <div class="caption-box">
+                                <p class="font-body text-sm text-on-surface-variant leading-[1.9]">
+                                    Its more than just a minibus. For those who notice the driver's seat.
+                                    A dialogue between the passenger and the pilot, after navigating the grid with surgical precision.
+                                </p>
+                            </div>
+                            <div class="mt-8 flex items-center gap-4">
+                                <div class="h-px flex-1 bg-outline-variant/20"></div>
+                                <span class="font-label text-[0.575rem] tracking-widest uppercase text-outline/60">03 · 04</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-<!-- Section 2: Find your place 
-<section class="group relative h-screen w-full flex flex-col items-end justify-end p-12 md:p-24 overflow-hidden cursor-pointer transition-all duration-700">
-<div class="absolute inset-0 z-0 bg-surface-container-lowest">
-  <video 
-    autoplay 
-    muted 
-    loop 
-    playsinline 
-    class="w-full h-full object-cover opacity-60 group-hover:scale-110 group-hover:opacity-80 transition-all duration-[1500ms] ease-out"
-  >
-    <source src="https://i.imgur.com/lYJu9OS.mp4" type="video/mp4">
-  </video>
+                <!-- ── SLIDE 4: The Pedestrian POV ── -->
+                <div class="slide">
+                    <div class="slide-split">
+                        <div class="slide-img-panel">
+                            <img src="https://i.imgur.com/wwRLxHe.jpeg" alt="The Pedestrian POV — street level, Johannesburg"/>
+                        </div>
+                        <div class="slide-text-panel">
+                            <p class="font-label text-[0.6rem] tracking-[0.3em] uppercase text-primary-container mb-5">03 / First Principles</p>
+                            <h2 class="serif-headline text-4xl md:text-5xl lg:text-[3.25rem] leading-[0.93] text-on-surface">
+                                The Pedestrian POV
+                            </h2>
+                            <div class="caption-box">
+                                <p class="font-body text-sm text-on-surface-variant leading-[1.9]">
+                                    Do it the original way. Walk through the streets and notice everything — the enduring entrepreneurs,
+                                    the niche abandoned buildings, and the joyful interactions. Slow down and take a stroll.
+                                </p>
+                            </div>
+                            <div class="mt-8 flex items-center gap-4">
+                                <div class="h-px flex-1 bg-outline-variant/20"></div>
+                                <span class="font-label text-[0.575rem] tracking-widest uppercase text-outline/60">04 · 04</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-  <div class="absolute inset-0 bg-gradient-to-r from-background via-transparent to-transparent opacity-80"></div>
-  <div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
-  
-</div>
-<div class="relative z-10 max-w-3xl text-right flex flex-col items-end">
-<div class="flex items-center space-x-4 mb-8">
-<span class="font-label text-primary tracking-[0.4em] uppercase text-xs font-bold">Perspective 02</span>
-<span class="w-12 h-[1px] bg-primary"></span>
-</div>
-<h2 class="font-serif text-5xl md:text-8xl text-on-surface mb-6 leading-tight">
-                    Find your place
-                </h2>
-<p class="font-body text-on-surface-variant text-lg md:text-xl max-w-md leading-relaxed mb-10">
-                    Discover your place of sanctuary, or chaos, within the city of Gold.
-                </p>
-	
-<a href="findyourplace.html" class="inline-flex items-center space-x-6 text-primary group/btn no-underline">
-        <span class="text-sm tracking-[0.3em] uppercase font-bold border-b border-primary/30 pb-1 group-hover/btn:border-primary transition-all duration-400">
-            View Collection
-        </span>
-        <span class="material-symbols-outlined translate-x-0 group-hover/btn:translate-x-4 transition-transform duration-400">
-            arrow_forward
-        </span>
-    </a>
-</div>	
-</section>
-</main>
+                <!-- ── SLIDE 5: End CTA ── -->
+                <div class="slide">
+                    <div class="relative w-full h-full flex flex-col items-center justify-center bg-[#0a0a0a] px-8">
+                        <div class="cta-slide-bg">
+                            <span style="bottom:-4rem; left:-3rem;">WAY</span>
+                        </div>
+                        <div class="relative z-10 text-center max-w-xl">
+                            <span class="w-14 h-px bg-primary/25 mx-auto block mb-10"></span>
+                            <h2 class="serif-headline text-4xl md:text-5xl lg:text-6xl text-on-surface mb-5 leading-[0.95]">
+                                Lose yourself to <em class="text-primary">find</em> the way.
+                            </h2>
+                            <p class="font-body text-sm text-on-surface-variant leading-relaxed max-w-xs mx-auto mb-10 opacity-75">
+                                You've walked the transit lines. Now discover the spaces that define the city.
+                            </p>
+                            <div class="flex flex-col items-center gap-3">
+                                <button onclick="closeExperience('transit'); openExperience('places');"
+                                    class="bg-primary text-on-primary px-10 py-4 font-bold uppercase tracking-[0.2em] text-[0.6875rem] transition-all hover:bg-white hover:text-black w-full max-w-xs">
+                                    Explore Created Spaces
+                                </button>
+                                <button onclick="closeExperience('transit')"
+                                    class="font-label text-[0.625rem] tracking-widest uppercase text-outline hover:text-on-surface transition-colors py-2">
+                                    Return to Home
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-</body></html>
+            </div><!-- /.slides-track -->
+        </div><!-- /.slides-viewport -->
+
+        <!-- Arrows -->
+        <button id="transit-prev" class="slide-arrow slide-arrow-prev faded" onclick="prevSlide('transit')">
+            <span class="material-symbols-outlined text-lg">arrow_back</span>
+        </button>
+        <button id="transit-next" class="slide-arrow slide-arrow-next" onclick="nextSlide('transit')">
+            <span class="material-symbols-outlined text-lg">arrow_forward</span>
+        </button>
+
+        <!-- Progress dots -->
+        <div id="transit-dots" class="absolute bottom-5 left-1/2 -translate-x-1/2 flex gap-1.5 z-50"></div>
+
+    </div><!-- /#transit-modal -->
+
+
+    <!-- ════════════════════════════════════════════════════════════ -->
+    <!--  PLACES MODAL — "Created Spaces"                             -->
+    <!-- ════════════════════════════════════════════════════════════ -->
+    <div id="places-modal" class="exp-modal">
+
+        <span class="modal-brand">PathFinder</span>
+        <button class="modal-close-btn" onclick="closeExperience('places')">&times;</button>
+
+        <div class="slides-viewport">
+            <div class="slides-track" id="places-track">
+
+                <!-- ── SLIDE 0: Hero ── -->
+                <div class="slide">
+                    <div class="relative w-full h-full flex flex-col items-end justify-end px-12 md:px-20 pb-16 md:pb-24 overflow-hidden">
+                        <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover opacity-55">
+                            <source src="https://i.imgur.com/lYJu9OS.mp4" type="video/mp4">
+                        </video>
+                        <div class="absolute inset-0 hero-grad-right"></div>
+                        <div class="absolute inset-0 hero-grad-top"></div>
+                        <div class="relative z-10 max-w-2xl text-right flex flex-col items-end">
+                            <div class="flex items-center gap-4 mb-7">
+                                <span class="font-label text-primary tracking-[0.4em] uppercase text-[0.6875rem] font-bold">Perspective 02</span>
+                                <span class="w-10 h-px bg-primary"></span>
+                            </div>
+                            <h2 class="serif-headline text-5xl md:text-7xl lg:text-8xl text-on-surface mb-6 leading-[0.9]">Worlds<br/>Within<br/>Worlds</h2>
+                            <p class="font-body text-on-surface-variant text-base md:text-lg max-w-sm leading-relaxed mb-10 opacity-85">
+                                You might think you've seen it all, until you see Joburg.
+                                Explore the people that make the places.
+                            </p>
+                            <button onclick="goToSlide('places', 1)" class="inline-flex items-center gap-5 text-primary group/begin cursor-pointer">
+                                <span class="font-label text-[0.6875rem] tracking-[0.3em] uppercase font-bold border-b border-primary/30 pb-0.5 group-hover/begin:border-primary transition-all">View Collection</span>
+                                <span class="material-symbols-outlined arrow-pulse">arrow_forward</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ── SLIDE 1: Find Your Place ── -->
+                <div class="slide">
+                    <div class="slide-split">
+                        <div class="slide-img-panel">
+                            <img src="https://i.imgur.com/HcOyGRc.jpeg" alt="Find Your Place — Johannesburg urban street photography"/>
+                            <div class="absolute inset-0 bg-gradient-to-r from-[#0a0a0a]/20 to-transparent"></div>
+                        </div>
+                        <div class="slide-text-panel">
+                            <p class="font-label text-[0.6rem] tracking-[0.3em] uppercase text-primary-container mb-5">Chapter II: The Environment</p>
+                            <h2 class="serif-headline text-4xl md:text-5xl lg:text-6xl leading-[0.93] text-on-surface">
+                                Find Your<br/><em class="text-primary">Place.</em>
+                            </h2>
+                            <div class="caption-box">
+                                <p class="font-body text-sm text-on-surface-variant leading-[1.9]">
+                                    Between busy street markets, quiet libraries, places of work, and historic buildings,
+                                    find what makes Joburg, Joburg.
+                                </p>
+                            </div>
+                            <div class="mt-8 flex items-center gap-4">
+                                <div class="h-px flex-1 bg-outline-variant/20"></div>
+                                <span class="font-label text-[0.575rem] tracking-widest uppercase text-outline/60">01 · 03</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ── SLIDE 2: The Street View ── -->
+                <div class="slide">
+                    <div class="slide-split">
+                        <div class="slide-img-panel" style="filter: grayscale(1);">
+                            <img src="https://i.imgur.com/gZYUPCA.jpeg" alt="The Street View — interior of concrete building, Johannesburg"/>
+                        </div>
+                        <div class="slide-text-panel">
+                            <p class="font-label text-[0.6rem] tracking-[0.3em] uppercase text-primary-container mb-5">A Concrete Home · 01 / The Real CBD</p>
+                            <h2 class="serif-headline text-4xl md:text-5xl lg:text-6xl leading-[0.93] text-on-surface">
+                                The Street View
+                            </h2>
+                            <div class="caption-box">
+                                <span class="caption-coords">26°12'16"S 28°02'29"E</span>
+                                <p class="font-body text-sm text-on-surface-variant leading-[1.9]">
+                                    Joburg is not meant for any one kind of person. It houses the wealthy businessmen,
+                                    the modest workers, the curious artists, and the misunderstood transients.
+                                    Explore the complex web of lifestyles that come together in this Urban Centre.
+                                </p>
+                            </div>
+                            <div class="mt-8 flex items-center gap-4">
+                                <div class="h-px flex-1 bg-outline-variant/20"></div>
+                                <span class="font-label text-[0.575rem] tracking-widest uppercase text-outline/60">02 · 03</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ── SLIDE 3: City Actors ── -->
+                <div class="slide">
+                    <div class="slide-split">
+                        <div class="slide-img-panel">
+                            <img src="https://i.imgur.com/HcOyGRc.jpeg" alt="City Actors — people on the street, Johannesburg"/>
+                        </div>
+                        <div class="slide-text-panel">
+                            <p class="font-label text-[0.6rem] tracking-[0.3em] uppercase text-primary-container mb-5">A Concrete Home · 01 / The Real CBD</p>
+                            <h2 class="serif-headline text-4xl md:text-5xl lg:text-6xl leading-[0.93] text-on-surface">
+                                City Actors
+                            </h2>
+                            <div class="caption-box">
+                                <span class="caption-coords">26°12'19.54"S 28°02'48.60"E</span>
+                                <p class="font-body text-sm text-on-surface-variant leading-[1.9]">
+                                    The city stages its own theatre — every corner a scene, every passer-by a character
+                                    navigating their own story through the grid of Johannesburg.
+                                </p>
+                            </div>
+                            <div class="mt-8 flex items-center gap-4">
+                                <div class="h-px flex-1 bg-outline-variant/20"></div>
+                                <span class="font-label text-[0.575rem] tracking-widest uppercase text-outline/60">03 · 03</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ── SLIDE 4: Quote + End CTA ── -->
+                <div class="slide">
+                    <div class="relative w-full h-full flex flex-col items-center justify-center bg-[#0a0a0a] px-8">
+                        <div class="cta-slide-bg">
+                            <span style="bottom:-2rem; right:-2rem;">PLACE</span>
+                        </div>
+                        <div class="relative z-10 text-center max-w-xl">
+                            <span class="material-symbols-outlined text-primary/25 text-5xl mb-8 block" style="font-variation-settings:'FILL' 1;">format_quote</span>
+                            <blockquote class="serif-headline text-2xl md:text-3xl lg:text-4xl italic leading-snug text-on-surface mb-7">
+                                "The city is not just a place, it can be your place too. Find Your Place in Joburg"
+                            </blockquote>
+                            <p class="font-label text-[0.625rem] tracking-[0.3em] uppercase text-primary-container mb-12">
+                                — Baraka and Safia, The PathFinder Collective
+                            </p>
+                            <div class="flex flex-col items-center gap-3">
+                                <button onclick="closeExperience('places')"
+                                    class="bg-primary text-on-primary px-10 py-4 font-bold uppercase tracking-[0.2em] text-[0.6875rem] transition-all hover:bg-white hover:text-black w-full max-w-xs">
+                                    Return to Home
+                                </button>
+                                <button onclick="closeExperience('places'); openExperience('transit');"
+                                    class="font-label text-[0.625rem] tracking-widest uppercase text-outline hover:text-on-surface transition-colors py-2">
+                                    View The Art of Transit
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div><!-- /.slides-track -->
+        </div><!-- /.slides-viewport -->
+
+        <!-- Arrows -->
+        <button id="places-prev" class="slide-arrow slide-arrow-prev faded" onclick="prevSlide('places')">
+            <span class="material-symbols-outlined text-lg">arrow_back</span>
+        </button>
+        <button id="places-next" class="slide-arrow slide-arrow-next" onclick="nextSlide('places')">
+            <span class="material-symbols-outlined text-lg">arrow_forward</span>
+        </button>
+
+        <!-- Progress dots -->
+        <div id="places-dots" class="absolute bottom-5 left-1/2 -translate-x-1/2 flex gap-1.5 z-50"></div>
+
+    </div><!-- /#places-modal -->
+
+
+    <!-- ════════════════════════════════════════════════════════════ -->
+    <!--  FOOTER                                                      -->
+    <!-- ════════════════════════════════════════════════════════════ -->
+    <footer class="relative z-10 w-full py-10 px-10 flex flex-col md:flex-row justify-between items-center border-t border-[#4E4639]/20 bg-[#0E0E0E]/70">
+        <div class="mb-5 md:mb-0">
+            <span class="text-[#E9C176] font-headline text-lg uppercase tracking-widest">PathFinder</span>
+            <p class="font-body text-[0.6rem] tracking-[0.1em] uppercase text-[#E5E2E1]/35 mt-1">© PathFinder Editorial. By Baraka Thiongo and Safia Sithole.</p>
+        </div>
+        <div class="flex gap-10">
+            <a class="font-body text-[0.6rem] tracking-[0.1em] uppercase text-[#E5E2E1]/35 hover:text-[#E9C176] transition-colors" href="https://ulwazi.wits.ac.za/courses/86588" target="_blank">ARPL3030</a>
+            <a class="font-body text-[0.6rem] tracking-[0.1em] uppercase text-[#E5E2E1]/35 hover:text-[#E9C176] transition-colors" href="#">2026</a>
+            <a class="font-body text-[0.6rem] tracking-[0.1em] uppercase text-[#E5E2E1]/35 hover:text-[#E9C176] transition-colors" href="#">Motion Visual Salon</a>
+        </div>
+    </footer>
+
+
+    <!-- ════════════════════════════════════════════════════════════ -->
+    <!--  SCRIPT                                                      -->
+    <!-- ════════════════════════════════════════════════════════════ -->
+    <script>
+        // ── State ───────────────────────────────────────────────────
+        const state = {
+            transit: { current: 0, total: 6 },
+            places:  { current: 0, total: 5 }
+        };
+
+        // ── Open / Close ─────────────────────────────────────────────
+        function openExperience(type) {
+            document.getElementById(type + '-modal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+            refreshUI(type);
+        }
+
+        function closeExperience(type) {
+            document.getElementById(type + '-modal').classList.remove('active');
+            document.body.style.overflow = '';
+            // Reset to hero slide
+            state[type].current = 0;
+            refreshUI(type);
+        }
+
+        // ── Navigation ───────────────────────────────────────────────
+        function goToSlide(type, index) {
+            const s = state[type];
+            s.current = Math.max(0, Math.min(index, s.total - 1));
+            refreshUI(type);
+        }
+
+        function nextSlide(type) {
+            if (state[type].current < state[type].total - 1) {
+                state[type].current++;
+                refreshUI(type);
+            }
+        }
+
+        function prevSlide(type) {
+            if (state[type].current > 0) {
+                state[type].current--;
+                refreshUI(type);
+            }
+        }
+
+        // ── Refresh: track + arrows + dots ──────────────────────────
+        function refreshUI(type) {
+            const { current, total } = state[type];
+
+            // Slide track
+            const track = document.getElementById(type + '-track');
+            if (track) track.style.transform = `translateX(-${current * 100}%)`;
+
+            // Arrows
+            const prev = document.getElementById(type + '-prev');
+            const next = document.getElementById(type + '-next');
+            if (prev) prev.classList.toggle('faded', current === 0);
+            if (next) next.classList.toggle('faded', current === total - 1);
+
+            // Dots
+            const dotsEl = document.getElementById(type + '-dots');
+            if (dotsEl) {
+                dotsEl.innerHTML = '';
+                for (let i = 0; i < total; i++) {
+                    const d = document.createElement('div');
+                    d.className = 'prog-dot' + (i === current ? ' on' : '');
+                    d.onclick = () => goToSlide(type, i);
+                    dotsEl.appendChild(d);
+                }
+            }
+        }
+
+        // ── Keyboard ─────────────────────────────────────────────────
+        document.addEventListener('keydown', function(e) {
+            const tActive = document.getElementById('transit-modal').classList.contains('active');
+            const pActive = document.getElementById('places-modal').classList.contains('active');
+
+            if (tActive) {
+                if (e.key === 'ArrowRight') nextSlide('transit');
+                if (e.key === 'ArrowLeft')  prevSlide('transit');
+                if (e.key === 'Escape')     closeExperience('transit');
+            }
+            if (pActive) {
+                if (e.key === 'ArrowRight') nextSlide('places');
+                if (e.key === 'ArrowLeft')  prevSlide('places');
+                if (e.key === 'Escape')     closeExperience('places');
+            }
+        });
+
+        // ── Init ─────────────────────────────────────────────────────
+        refreshUI('transit');
+        refreshUI('places');
+    </script>
+
+</body>
+</html>
