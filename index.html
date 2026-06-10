@@ -704,27 +704,37 @@
                     </div>
                 </div>
 
-                <!-- ── SLIDE 1: Find Your Place ── -->
-                <div class="slide">
-                    <div class="slide-split">
-                        <div class="slide-img-panel">
-                            <img src="https://i.imgur.com/HcOyGRc.jpeg" alt="Find Your Place — Johannesburg urban street photography"/>
-                            <div class="absolute inset-0 bg-gradient-to-r from-[#0a0a0a]/20 to-transparent"></div>
-                        </div>
-                        <div class="slide-text-panel">
-                            <p class="font-label text-[0.6rem] tracking-[0.3em] uppercase text-primary-container mb-5">Chapter II: The Environment</p>
-                            <h2 class="serif-headline text-4xl md:text-5xl lg:text-6xl leading-[0.93] text-on-surface">
-                                Find Your<br/><em class="text-primary">Place.</em>
+              <!-- ── SLIDE 1: Find Your Place ── -->
+                <div class="slide relative w-full h-full flex items-center overflow-hidden bg-black">
+                    <!-- Background Image & Gradient -->
+                    <div class="absolute inset-0 z-0">
+                        <img class="w-full h-full object-cover object-[20%_center]" src="https://i.imgur.com/HcOyGRc.jpeg" alt="Find Your Place — Johannesburg urban street photography"/>
+                        <div class="absolute inset-0 bg-gradient-to-r from-[#0a0a0a]/95 via-[#0a0a0a]/80 to-transparent"></div>
+                    </div>
+
+                    <!-- Text Content -->
+                    <div class="relative z-10 w-full max-w-7xl mx-auto pl-24 pr-16 md:pl-32 md:pr-24">
+                        <div class="max-w-xl">
+                            <p class="font-label text-[0.6rem] tracking-[0.3em] uppercase text-primary mb-5">
+                                Chapter II: Found Spaces
+                            </p>
+                            
+                            <h2 class="serif-headline text-5xl md:text-7xl lg:text-[5rem] leading-[1.05] text-on-surface mb-6">
+                                Find Your<br/>
+                                <em class="text-primary not-italic font-serif">Place.</em>
                             </h2>
-                            <div class="caption-box">
-                                <p class="font-body text-sm text-on-surface-variant leading-[1.9]">
+                            
+                            <div class="caption-box mb-10">
+                                <p class="font-body text-sm md:text-base text-on-surface-variant leading-[1.8] max-w-md">
                                     Between busy street markets, quiet libraries, places of work, and historic buildings,
                                     find what makes Joburg, Joburg.
                                 </p>
                             </div>
-                            <div class="mt-8 flex items-center gap-4">
-                                <div class="h-px flex-1 bg-outline-variant/20"></div>
-                                <span class="font-label text-[0.575rem] tracking-widest uppercase text-outline/60">01 · 03</span>
+
+                            <!-- Pagination Indicator -->
+                            <div class="flex items-center gap-4 max-w-[200px]">
+                                <div class="h-px flex-1 bg-outline-variant/30"></div>
+                                <span class="font-label text-[0.575rem] tracking-widest uppercase text-outline/80">01 · 03</span>
                             </div>
                         </div>
                     </div>
@@ -757,11 +767,20 @@
                     </div>
                 </div>
 
-                <!-- ── SLIDE 3: City Actors ── -->
+                <!-- ── SLIDE 3: City Actors (UPDATED) ── -->
                 <div class="slide">
                     <div class="slide-split">
                         <div class="slide-img-panel">
-                            <img src="https://i.imgur.com/HcOyGRc.jpeg" alt="City Actors — people on the street, Johannesburg"/>
+                            
+                            <!-- Notice the image_72ec82.jpg reference here for the full screen zoom popup -->
+                          <div class="relative cursor-pointer group h-full" onclick="openFullscreenZoom('https://i.imgur.com/HcOyGRc.jpeg')">
+    <img src="https://i.imgur.com/HcOyGRc.jpeg" alt="City Actors" class="w-full h-full object-cover block"/>
+   
+                                <div class="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-sm">
+                                    <span class="font-label text-sm tracking-[0.2em] uppercase text-[#eecb96]">click to take a closer look</span>
+                                </div>
+                            </div>
+
                         </div>
                         <div class="slide-text-panel">
                             <p class="font-label text-[0.6rem] tracking-[0.3em] uppercase text-primary-container mb-5">A Concrete Home · 01 / The Real CBD</p>
@@ -842,6 +861,23 @@
             <a class="font-body text-[0.6rem] tracking-[0.1em] uppercase text-[#E5E2E1]/35 hover:text-[#E9C176] transition-colors" href="#">Motion Visual Salon</a>
         </div>
     </footer>
+
+    <!-- ════════════════════════════════════════════════════════════ -->
+    <!--  FULL SCREEN ZOOM MODAL                                      -->
+    <!-- ════════════════════════════════════════════════════════════ -->
+    <div id="zoomModal" class="fixed inset-0 bg-[#0a0a0a] z-[9999] hidden flex items-center justify-center">
+        <!-- Close Button -->
+        <button onclick="closeFullscreenZoom()" class="absolute top-8 right-8 w-10 h-10 bg-[#eecb96] hover:bg-white text-black flex items-center justify-center rounded-sm text-2xl font-bold cursor-pointer transition-colors z-50">
+            &times;
+        </button>
+        
+        <!-- Image Container with Mouse Tracking -->
+        <div class="relative w-[90vw] h-[90vh] flex items-center justify-center cursor-none" id="zoomContainer" onmousemove="moveMagnifier(event)" onmouseenter="showMagnifier()" onmouseleave="hideMagnifier()">
+            <img id="zoomImage" src="" alt="Full Screen Zoom" class="max-w-full max-h-full object-contain pointer-events-auto shadow-2xl" />
+            <!-- Magnifier Lens (Glowing orange ring) -->
+            <div id="magnifierLens" class="fixed pointer-events-none rounded-full border-[3px] border-[#eecb96] shadow-[0_0_30px_rgba(238,203,150,0.4)] hidden bg-no-repeat w-64 h-64 z-40 bg-[#0a0a0a]"></div>
+        </div>
+    </div>
 
 
     <!-- ════════════════════════════════════════════════════════════ -->
@@ -933,11 +969,81 @@
                 if (e.key === 'Escape')     closeExperience('places');
             }
         });
+        
+        // ── Magnification ────────────────────────────────────────────
+        // Configuration: How much larger the magnified image should be
+        const ZOOM_LEVEL = 2.5; 
+
+        function openFullscreenZoom(src) {
+            const modal = document.getElementById('zoomModal');
+            const img = document.getElementById('zoomImage');
+            const lens = document.getElementById('magnifierLens');
+
+            img.src = src;
+            
+            // Wait for image to load to set the lens background
+            img.onload = () => {
+                lens.style.backgroundImage = `url('${src}')`;
+            };
+            
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling underneath
+        }
+
+        function closeFullscreenZoom() {
+            document.getElementById('zoomModal').classList.add('hidden');
+            document.body.style.overflow = ''; // Restore scrolling
+        }
+
+        function showMagnifier() {
+            document.getElementById('magnifierLens').classList.remove('hidden');
+        }
+
+        function hideMagnifier() {
+            document.getElementById('magnifierLens').classList.add('hidden');
+        }
+
+        function moveMagnifier(e) {
+            const img = document.getElementById('zoomImage');
+            const lens = document.getElementById('magnifierLens');
+
+            // Get image's current dimensions and position on screen
+            const rect = img.getBoundingClientRect();
+
+            // Calculate where the cursor is relative to the actual image
+            let x = e.clientX - rect.left;
+            let y = e.clientY - rect.top;
+
+            // Hide lens if cursor goes off the image itself
+            if (x < 0 || x > rect.width || y < 0 || y > rect.height) {
+                hideMagnifier();
+                return;
+            } else {
+                showMagnifier();
+            }
+
+            const lensWidth = lens.offsetWidth;
+            const lensHeight = lens.offsetHeight;
+
+            // 1. Center the lens exactly on the user's cursor
+            lens.style.left = `${e.clientX - lensWidth / 2}px`;
+            lens.style.top = `${e.clientY - lensHeight / 2}px`;
+
+            // 2. Size the background image relative to the zoom level
+            const bgWidth = rect.width * ZOOM_LEVEL;
+            const bgHeight = rect.height * ZOOM_LEVEL;
+            lens.style.backgroundSize = `${bgWidth}px ${bgHeight}px`;
+
+            // 3. Shift the background image so the cursor point remains in the center of the lens
+            const bgPosX = -(x * ZOOM_LEVEL - lensWidth / 2);
+            const bgPosY = -(y * ZOOM_LEVEL - lensHeight / 2);
+
+            lens.style.backgroundPosition = `${bgPosX}px ${bgPosY}px`;
+        }
 
         // ── Init ─────────────────────────────────────────────────────
         refreshUI('transit');
         refreshUI('places');
     </script>
-
 </body>
 </html>
